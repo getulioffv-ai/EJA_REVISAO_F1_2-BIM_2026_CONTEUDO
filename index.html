@@ -1,0 +1,2722 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="briefing">
+  <title>Revisão de Sociologia — 2º Bimestre | EJA Fase 1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces: warm stone-white paper */
+      --background: #faf9f5;
+      --surface-container-low: #ffffff;
+      --surface-container: #f1efe8;
+      --surface-container-high: #e6e2d6;
+
+      /* Ink */
+      --on-surface: #17181a;
+      --on-surface-variant: #56585c;
+
+      /* Rules */
+      --outline: #17181a;
+      --outline-variant: #dedad0;
+      --border-subtle: #c8c4b8;
+
+      /* Accents */
+      --primary: #17181a;
+      --on-primary: #faf9f5;
+      --primary-container: #f2b705;
+      --on-primary-container: #17181a;
+      --secondary: #1f4e5f;
+      --secondary-soft: #e6eff2;
+      --tertiary: #785008;
+      --gold-tint: #f5e6c4;
+      --error: #b42318;
+      --error-bg: #fdeceb;
+      --on-error: #ffffff;
+
+      /* Data series */
+      --data-1: #1f4e5f;
+      --data-2: #d99000;
+      --data-3: #2b6e52;
+      --data-4: #b84a39;
+      --data-context: #c4bfb2;
+
+      /* Fonts */
+      --font-headline: 'Source Serif 4', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'Geist Mono', monospace;
+
+      /* Shape */
+      --rounded: 0.25rem;
+      --rounded-lg: 0.375rem;
+      --rounded-full: 0.25rem;
+
+      /* Style effects */
+      --section-rule: 1.5px solid var(--outline);
+      --card-border: 1px solid var(--outline-variant);
+      --badge-radius: 2px;
+      --heading-tracking: -0.02em;
+      --label-tracking: 0.08em;
+
+      /* Shared semantic & focus tokens */
+      --positive: #2b6e52;
+      --positive-bg: #e7f3ed;
+      --warning: #785008;
+      --focus: #1f4e5f;
+
+      /* Narrative type scale */
+      --display-size: clamp(2.15rem, 1.4rem + 3.2vw, 3.6rem);
+      --headline-size: clamp(1.65rem, 1.2rem + 1.6vw, 2.35rem);
+      --subhead-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.45rem);
+      --body-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.1vw, 0.8125rem);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 5.5rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    a {
+      color: var(--secondary);
+      text-decoration-thickness: 1.5px;
+      text-underline-offset: 3px;
+    }
+    a:hover {
+      color: var(--on-surface);
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-xl);
+      padding: var(--space-lg);
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Briefing Dossier Treatments */
+    .dossier-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      border-bottom: var(--section-rule);
+      padding-bottom: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .dossier-bar-left {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .dossier-pill {
+      display: inline-block;
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--badge-radius);
+    }
+    .dossier-meta {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      color: var(--on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-block {
+      padding-top: var(--space-sm);
+      padding-bottom: var(--space-lg);
+      border-bottom: var(--card-border);
+    }
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.08;
+      color: var(--on-surface);
+      margin: 0;
+      max-width: 24ch;
+    }
+    .standfirst {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.45;
+      color: var(--secondary);
+      margin: var(--space-md) 0 0 0;
+      max-width: 62ch;
+    }
+
+    .section-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.12;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .section-standfirst {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1.0625rem;
+      color: var(--secondary);
+      margin: var(--space-xs) 0 var(--space-lg) 0;
+      max-width: 65ch;
+    }
+    h3 {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.25;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm) 0;
+    }
+    h4 {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 1rem;
+      line-height: 1.35;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-xs) 0;
+    }
+    p {
+      margin: 0 0 var(--space-md) 0;
+      max-width: 65ch;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    /* Cards & Asides */
+    .figure-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+    .aside-box {
+      background: var(--surface-container);
+      border-top: var(--section-rule);
+      padding: var(--space-md) var(--space-lg);
+      border-radius: 0 0 var(--rounded) var(--rounded);
+    }
+    .index-num {
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: var(--label-size);
+      color: var(--secondary);
+      letter-spacing: 0.04em;
+    }
+    .tag-chip {
+      display: inline-block;
+      background: var(--gold-tint);
+      color: var(--tertiary);
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded);
+    }
+    .tag-chip--petrol {
+      background: var(--secondary-soft);
+      color: var(--secondary);
+    }
+    .tag-chip--done {
+      background: var(--positive-bg);
+      color: var(--positive);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+    }
+    .btn:active {
+      transform: translateY(1px);
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      border: 1px solid var(--primary);
+    }
+    .btn-primary:hover {
+      background: var(--secondary);
+      border-color: var(--secondary);
+      color: var(--on-primary);
+    }
+    .btn-secondary {
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border: 1px solid var(--border-subtle);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-container);
+      border-color: var(--outline);
+    }
+    .btn-secondary[aria-pressed="true"],
+    .btn-secondary.is-active {
+      background: var(--secondary);
+      color: var(--on-primary);
+      border-color: var(--secondary);
+    }
+    .btn-done[aria-pressed="true"] {
+      background: var(--positive);
+      color: var(--on-primary);
+      border-color: var(--positive);
+    }
+
+    /* Top Navigation & Progress Map */
+    .study-overview {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 300px);
+      gap: var(--space-lg);
+      align-items: stretch;
+    }
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .roadmap-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .roadmap-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .roadmap-card-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: 1.0625rem;
+      line-height: 1.25;
+      color: var(--on-surface);
+    }
+    .roadmap-card-link {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+    }
+
+    .progress-summary-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-top: 3px solid var(--secondary);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+    .kpi-value {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: 2rem;
+      line-height: 1.05;
+      font-variant-numeric: lining-nums tabular-nums;
+      color: var(--on-surface);
+    }
+    .kpi-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      text-transform: uppercase;
+      margin-top: var(--space-xs);
+    }
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--secondary);
+      width: 0%;
+      transition: width var(--dur-short) var(--ease-out);
+    }
+
+    /* Lesson Sections Layout */
+    .lesson-section {
+      padding-top: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    .two-col-asymmetric {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .equal-two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-lg);
+    }
+    .card-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .card-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    /* Lists */
+    .clean-list {
+      margin: 0;
+      padding-left: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .clean-list li::marker {
+      color: var(--secondary);
+      font-weight: 700;
+    }
+
+    /* Tables */
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9375rem;
+    }
+    thead th {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--on-surface);
+      background: var(--surface-container);
+      border-bottom: var(--section-rule);
+      padding: var(--space-md);
+    }
+    tbody td, tbody th[scope="row"] {
+      padding: var(--space-md);
+      border-bottom: var(--card-border);
+      vertical-align: top;
+    }
+    tbody tr:last-child td,
+    tbody tr:last-child th[scope="row"] {
+      border-bottom: none;
+    }
+    tbody th[scope="row"] {
+      font-weight: 700;
+      color: var(--on-surface);
+    }
+
+    /* Interactive Explorers */
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .spotlight-panel {
+      background: var(--background);
+      border: var(--card-border);
+      border-left: 4px solid var(--secondary);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+    }
+    .spotlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-sm);
+    }
+    .spotlight-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+
+    /* Situation Trainer (Aula 2) */
+    .scenario-box {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .scenario-quote {
+      font-family: var(--font-headline);
+      font-size: 1.25rem;
+      line-height: 1.4;
+      color: var(--on-surface);
+      background: var(--surface-container);
+      padding: var(--space-md) var(--space-lg);
+      border-radius: var(--rounded);
+      border-left: 4px solid var(--primary-container);
+    }
+    .feedback-banner {
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      border: 1px solid var(--outline-variant);
+      font-size: 0.9375rem;
+    }
+    .feedback-banner--ok {
+      background: var(--positive-bg);
+      border-color: var(--positive);
+      color: var(--on-surface);
+    }
+    .feedback-banner--warn {
+      background: var(--error-bg);
+      border-color: var(--error);
+      color: var(--on-surface);
+    }
+
+    /* Historical Timeline (Aula 2) */
+    .timeline-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .timeline-item {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-top: 3px solid var(--primary-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+    }
+    .timeline-year {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 1.5rem;
+      font-variant-numeric: lining-nums tabular-nums;
+      color: var(--secondary);
+      margin-bottom: var(--space-xs);
+    }
+
+    /* Panopticon Interactive SVG (Aula 4) */
+    .panopticon-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: center;
+    }
+    .panopticon-svg-wrap {
+      background: var(--background);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 280px;
+    }
+    .panopticon-svg {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      display: block;
+    }
+    .svg-ring { fill: none; stroke: var(--outline); stroke-width: 2; }
+    .svg-cell { fill: var(--surface-container); stroke: var(--outline-variant); stroke-width: 1.5; }
+    .svg-tower { fill: var(--primary); stroke: var(--outline); stroke-width: 2; }
+    .svg-tower-empty { fill: var(--surface-container-high); stroke: var(--outline); stroke-width: 2; stroke-dasharray: 4 3; }
+    .svg-beam { fill: var(--primary-container); fill-opacity: 0.28; stroke: var(--tertiary); stroke-width: 1.25; stroke-dasharray: 4 3; }
+    .svg-beam-hidden { fill: none; stroke: var(--data-context); stroke-width: 1; stroke-dasharray: 3 4; }
+    .svg-person { fill: var(--secondary); }
+    .svg-label {
+      font-family: var(--font-label);
+      font-size: 10px;
+      font-weight: 600;
+      fill: var(--on-surface);
+      text-anchor: middle;
+    }
+
+    /* Glossary Accordion / Grid */
+    .glossary-details {
+      background: var(--surface-container);
+      border-top: var(--section-rule);
+      border-radius: 0 0 var(--rounded) var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+    }
+    .glossary-summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--on-surface);
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      min-height: 44px;
+    }
+    .glossary-summary::-webkit-details-marker { display: none; }
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: var(--card-border);
+    }
+    .glossary-term dt {
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: var(--space-xs);
+    }
+    .glossary-term dd {
+      margin: 0;
+      font-size: 0.9375rem;
+      color: var(--on-surface);
+    }
+
+    .lesson-footer-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      padding-top: var(--space-sm);
+    }
+
+    /* Quiz / Simulado Section */
+    .quiz-dashboard {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-top: 3px solid var(--primary);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .quiz-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .quiz-stat-box {
+      background: var(--background);
+      border: var(--card-border);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+    .quiz-question-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .quiz-question-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .quiz-question-stem {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: 1.1875rem;
+      line-height: 1.38;
+      color: var(--on-surface);
+      margin: 0;
+      max-width: 70ch;
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .quiz-option-btn {
+      width: 100%;
+      min-height: 48px;
+      text-align: left;
+      display: grid;
+      grid-template-columns: 32px minmax(0, 1fr);
+      gap: var(--space-sm);
+      align-items: start;
+      padding: var(--space-md);
+      background: var(--background);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      cursor: pointer;
+      line-height: 1.45;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .quiz-option-btn:hover:not(:disabled) {
+      background: var(--surface-container);
+      border-color: var(--outline);
+    }
+    .quiz-option-btn:disabled {
+      cursor: default;
+    }
+    .quiz-option-letter {
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: 0.875rem;
+      width: 26px;
+      height: 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+    }
+    .quiz-option-btn.is-correct {
+      background: var(--positive-bg);
+      border: 1.5px solid var(--positive);
+    }
+    .quiz-option-btn.is-correct .quiz-option-letter {
+      background: var(--positive);
+      color: var(--on-primary);
+    }
+    .quiz-option-btn.is-wrong {
+      background: var(--error-bg);
+      border: 1.5px solid var(--error);
+    }
+    .quiz-option-btn.is-wrong .quiz-option-letter {
+      background: var(--error);
+      color: var(--on-error);
+    }
+    .quiz-feedback {
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      border-left: 4px solid var(--secondary);
+      background: var(--surface-container);
+      font-size: 0.9375rem;
+    }
+    .quiz-feedback.is-correct {
+      border-left-color: var(--positive);
+      background: var(--positive-bg);
+    }
+    .quiz-feedback.is-wrong {
+      border-left-color: var(--error);
+      background: var(--error-bg);
+    }
+
+    .footer-refs {
+      border-top: var(--section-rule);
+      padding-top: var(--space-lg);
+      padding-bottom: var(--space-2xl);
+      font-size: 0.9rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .study-overview,
+      .two-col-asymmetric,
+      .panopticon-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md);
+        gap: var(--space-lg);
+      }
+      .equal-two-col {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .figure-card {
+        padding: var(--space-md);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-grid">
+
+    <!-- OPENING HEADER / DOSSIER MASTHEAD -->
+    <header class="hero-block">
+      <div class="dossier-bar">
+        <div class="dossier-bar-left">
+          <span class="dossier-pill">Guia de Revisão • 2º Bimestre</span>
+          <span class="dossier-meta">Sociologia • EJA Fase 1 • Colégio Everest Internacional</span>
+        </div>
+        <span class="dossier-meta">Prof. Getulio Fidelis</span>
+      </div>
+
+      <h1 class="title">Como a sociedade nos molda — e como questioná-la</h1>
+      <p class="standfirst">
+        Material completo de estudo e fixação para a prova de Sociologia: das primeiras regras aprendidas em casa às engrenagens invisíveis do poder, com exemplos do dia a dia na EJA e simulado comentado.
+      </p>
+    </header>
+
+    <!-- STUDY ROADMAP & LIVE PROGRESS -->
+    <section aria-label="Mapa de estudo e progresso">
+      <div class="study-overview">
+        <div class="roadmap-grid">
+          <article class="roadmap-card">
+            <div>
+              <div class="roadmap-card-head">
+                <span class="index-num">AULA 01 • 06/10/2026</span>
+                <span class="tag-chip" id="status-badge-aula1">Pendente</span>
+              </div>
+              <h2 class="roadmap-card-title" style="margin-top: var(--space-sm);">Socialização</h2>
+              <p style="font-size: 0.875rem; color: var(--on-surface-variant); margin-top: var(--space-xs);">
+                Durkheim, Victor de Aveyron, fase primária e secundária, agentes e diversidade.
+              </p>
+            </div>
+            <a class="roadmap-card-link" href="#aula-1">Estudar Aula 01 →</a>
+          </article>
+
+          <article class="roadmap-card">
+            <div>
+              <div class="roadmap-card-head">
+                <span class="index-num">AULA 02 • 20/10/2026</span>
+                <span class="tag-chip" id="status-badge-aula2">Pendente</span>
+              </div>
+              <h2 class="roadmap-card-title" style="margin-top: var(--space-sm);">Controle Social</h2>
+              <p style="font-size: 0.875rem; color: var(--on-surface-variant); margin-top: var(--space-xs);">
+                Coerção social, normas e sanções, informal vs. formal, autocontrole e leis injustas.
+              </p>
+            </div>
+            <a class="roadmap-card-link" href="#aula-2">Estudar Aula 02 →</a>
+          </article>
+
+          <article class="roadmap-card">
+            <div>
+              <div class="roadmap-card-head">
+                <span class="index-num">AULA 03 • 27/10/2026</span>
+                <span class="tag-chip" id="status-badge-aula3">Pendente</span>
+              </div>
+              <h2 class="roadmap-card-title" style="margin-top: var(--space-sm);">Status e Papéis</h2>
+              <p style="font-size: 0.875rem; color: var(--on-surface-variant); margin-top: var(--space-xs);">
+                Linton, Goffman, Dona Célia, status atribuído vs. adquirido e conflito de papéis.
+              </p>
+            </div>
+            <a class="roadmap-card-link" href="#aula-3">Estudar Aula 03 →</a>
+          </article>
+
+          <article class="roadmap-card">
+            <div>
+              <div class="roadmap-card-head">
+                <span class="index-num">AULA 04 • 17/11/2026</span>
+                <span class="tag-chip" id="status-badge-aula4">Pendente</span>
+              </div>
+              <h2 class="roadmap-card-title" style="margin-top: var(--space-sm);">Estado e Poder</h2>
+              <p style="font-size: 0.875rem; color: var(--on-surface-variant); margin-top: var(--space-xs);">
+                Althusser (ARE e AIE), Foucault (Vigiar e Punir), corpos dóceis e Panóptico.
+              </p>
+            </div>
+            <a class="roadmap-card-link" href="#aula-4">Estudar Aula 04 →</a>
+          </article>
+        </div>
+
+        <aside class="progress-summary-card">
+          <div>
+            <span class="dossier-pill">Seu Painel de Revisão</span>
+            <div class="kpi-row" style="margin-top: var(--space-md);">
+              <div>
+                <div class="kpi-value" id="kpi-lessons">0/4</div>
+                <div class="kpi-label">Aulas revisadas</div>
+              </div>
+              <div>
+                <div class="kpi-value" id="kpi-quiz">0/12</div>
+                <div class="kpi-label">Simulado feito</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="progress-track" aria-hidden="true">
+              <div class="progress-fill" id="overall-progress-fill"></div>
+            </div>
+            <p id="overall-progress-text" style="font-size: 0.875rem; color: var(--on-surface-variant); margin-top: var(--space-sm);">
+              Comece pela Aula 01 e marque cada bloco ao terminar a leitura.
+            </p>
+          </div>
+          <a class="btn btn-primary" href="#simulado">Ir direto ao Simulado</a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         AULA 01: SOCIALIZAÇÃO
+         ========================================================= -->
+    <section id="aula-1" class="lesson-section" aria-labelledby="heading-aula-1">
+      <div class="dossier-bar">
+        <div class="dossier-bar-left">
+          <span class="dossier-pill">Aula 01</span>
+          <span class="dossier-meta">Data original: 06/10/2026 • Como nos tornamos quem somos</span>
+        </div>
+        <span class="index-num">01 / 04</span>
+      </div>
+
+      <div>
+        <h2 id="heading-aula-1" class="section-title">Socialização: ninguém nasce sabendo viver em grupo</h2>
+        <p class="section-standfirst">
+          Falar português, esperar a vez na fila, usar o celular ou saber se portar em um velório ou em uma festa não vem no sangue — tudo isso é aprendizado social.
+        </p>
+      </div>
+
+      <div class="two-col-asymmetric">
+        <div class="figure-card">
+          <span class="index-num">01.1 CONCEITO CENTRAL</span>
+          <h3 style="margin-top: var(--space-xs);">O que é socialização?</h3>
+          <p>
+            <strong>Socialização é o processo pelo qual cada pessoa aprende e incorpora os costumes, as regras, os valores e as formas de agir da sociedade em que vive.</strong> Por meio dela, deixamos de ser apenas um corpo recém-nascido e nos tornamos membros de um grupo: aprendemos a língua, os gestos e o que é considerado certo ou errado, educado ou grosseiro.
+          </p>
+          <p>
+            O sociólogo francês <strong>Émile Durkheim (1858–1917)</strong> destacou um ponto fundamental: <strong>a sociedade já existe antes de nós</strong>. Quando um bebê nasce, a língua, os horários das refeições, a comida e as crenças já estão ali, prontos para ensiná-lo como viver.
+          </p>
+          <p>
+            <strong>Atenção — não é processo de mão única:</strong> nós absorvemos o que a sociedade ensina, mas também interpretamos, questionamos e podemos mudar o que aprendemos. Uma jovem pode ouvir em casa que “mulher deve cuidar da casa” e, mais tarde, decidir construir outro caminho.
+          </p>
+        </div>
+
+        <aside class="aside-box">
+          <span class="tag-chip">Curiosidade Histórica</span>
+          <h4 style="margin-top: var(--space-sm);">O caso de Victor de Aveyron (1800)</h4>
+          <p style="font-size: 0.9375rem;">
+            No ano de 1800, no sul da França, foi encontrado um menino de cerca de 12 anos que havia crescido sozinho na floresta. Conhecido como <strong>Victor de Aveyron</strong>, ele não falava, não tinha hábitos humanos comuns e, mesmo após anos de ensino, aprendeu muito pouco da linguagem.
+          </p>
+          <p style="font-size: 0.9375rem;">
+            O caso comprova uma lição central da Sociologia: a convivência com outras pessoas — sobretudo nos primeiros anos — é decisiva para nos tornarmos humanos em sociedade.
+          </p>
+        </aside>
+      </div>
+
+      <!-- Primária vs Secundária -->
+      <div class="equal-two-col">
+        <article class="figure-card" style="border-top: 3px solid var(--secondary);">
+          <span class="index-num">01.2 FASE INICIAL</span>
+          <h3 style="margin-top: var(--space-xs);">Socialização Primária</h3>
+          <p>
+            Para os sociólogos <strong>Peter Berger e Thomas Luckmann</strong>, é a fase mais importante, pois marca a primeira entrada da criança no mundo social. Ocorre nos primeiros anos de vida, geralmente na <strong>família</strong> (mãe, pai, avós, tios, irmãos mais velhos ou cuidadores).
+          </p>
+          <ul class="clean-list">
+            <li><strong>Língua:</strong> o idioma e o jeito de falar da nossa região.</li>
+            <li><strong>Hábitos do dia a dia:</strong> alimentação, higiene, horários e respeito aos mais velhos.</li>
+            <li><strong>Valores e crenças:</strong> noções de honestidade, família e fé.</li>
+            <li><strong>Laços de afeto:</strong> moldam como nos relacionamos por toda a vida. Muitas vezes dizemos “eu sou assim” sem notar que “ser assim” foi aprendido em casa.</li>
+          </ul>
+        </article>
+
+        <article class="figure-card" style="border-top: 3px solid var(--primary-container);">
+          <span class="index-num">01.3 VIDA INTEIRA</span>
+          <h3 style="margin-top: var(--space-xs);">Socialização Secundária</h3>
+          <p>
+            Acontece quando saímos do círculo familiar e entramos em outros espaços da sociedade. <strong>Ela dura a vida inteira</strong> e ensina regras específicas de cada ambiente e papel social: escola, primeiro emprego, serviço militar, igreja, time de futebol ou repartição pública.
+          </p>
+          <div class="spotlight-panel" style="margin-top: var(--space-md);">
+            <div class="spotlight-label">Conexão direta com a EJA</div>
+            <p style="font-size: 0.9375rem;">
+              Quem volta a estudar na EJA vive a socialização secundária agora na vida adulta: reaprende a rotina de sala de aula, trabalhos e provas, e convive com colegas de várias idades e trajetórias. <strong>Ninguém para de aprender a viver em sociedade.</strong>
+            </p>
+          </div>
+          <p style="font-size: 0.9375rem; margin-top: var(--space-md);">
+            Hoje, a <strong>mídia e as redes sociais</strong> (séries, novelas, vídeos, influenciadores) ensinam modos de vestir, falar, consumir e desejar — exigindo olhar crítico.
+          </p>
+        </article>
+      </div>
+
+      <!-- Interactive Agentes de Socialização -->
+      <div class="figure-card">
+        <span class="index-num">01.4 EXPLORADOR INTERATIVO</span>
+        <h3 style="margin-top: var(--space-xs);">Quem socializa? Os 6 agentes de socialização</h3>
+        <p>
+          Agentes de socialização são as instituições e os grupos que nos ensinam a viver em sociedade. Selecione cada agente para destacar seu papel no cotidiano ou consulte o quadro completo abaixo.
+        </p>
+
+        <div class="pill-row" role="group" aria-label="Selecionar agente de socialização">
+          <button type="button" class="btn btn-secondary is-active" id="agent-btn-familia" onclick="selectAgent('familia')">Família</button>
+          <button type="button" class="btn btn-secondary" id="agent-btn-escola" onclick="selectAgent('escola')">Escola</button>
+          <button type="button" class="btn btn-secondary" id="agent-btn-amigos" onclick="selectAgent('amigos')">Grupo de amigos</button>
+          <button type="button" class="btn btn-secondary" id="agent-btn-trabalho" onclick="selectAgent('trabalho')">Trabalho</button>
+          <button type="button" class="btn btn-secondary" id="agent-btn-religiao" onclick="selectAgent('religiao')">Religião</button>
+          <button type="button" class="btn btn-secondary" id="agent-btn-midia" onclick="selectAgent('midia')">Mídia e redes</button>
+        </div>
+
+        <div class="spotlight-panel" id="agent-spotlight" aria-live="polite">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm); flex-wrap: wrap;">
+            <strong id="agent-title" style="font-size: 1.125rem; color: var(--secondary);">Família (Agente primário)</strong>
+            <span class="tag-chip tag-chip--petrol" id="agent-phase">Socialização Primária</span>
+          </div>
+          <div class="spotlight-grid">
+            <div>
+              <div class="spotlight-label">O que ensina</div>
+              <p id="agent-teaches" style="font-size: 0.9375rem;">Língua, valores, hábitos, afeto, religião e os primeiros papéis sociais.</p>
+            </div>
+            <div>
+              <div class="spotlight-label">Exemplo do dia a dia</div>
+              <p id="agent-example" style="font-size: 0.9375rem;">Ensinar a criança a agradecer, a respeitar os mais velhos e a rezar antes de comer.</p>
+            </div>
+            <div>
+              <div class="spotlight-label">Na prática da EJA</div>
+              <p id="agent-eja" style="font-size: 0.9375rem;">Muitos valores aprendidos em casa explicam o respeito aos colegas e a força de vontade para retomar os estudos.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-wrap" style="margin-top: var(--space-lg);">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Agente</th>
+                <th scope="col">O que ensina</th>
+                <th scope="col">Exemplo do dia a dia</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Família</th>
+                <td>Língua, valores, hábitos, afeto, religião, primeiros papéis sociais.</td>
+                <td>Ensinar a criança a agradecer, respeitar os mais velhos, rezar antes de comer.</td>
+              </tr>
+              <tr>
+                <th scope="row">Escola</th>
+                <td>Disciplina, convivência com diferentes, conhecimento formal, regras coletivas.</td>
+                <td>Chegar no horário, esperar a vez de falar, dividir tarefas em grupo.</td>
+              </tr>
+              <tr>
+                <th scope="row">Grupo de amigos</th>
+                <td>Gírias, modas, gostos, sentimento de pertencimento a um grupo.</td>
+                <td>Adotar um estilo de roupa, uma música ou uma expressão do grupo.</td>
+              </tr>
+              <tr>
+                <th scope="row">Trabalho</th>
+                <td>Responsabilidade, hierarquia, profissão, identidade profissional.</td>
+                <td>Usar uniforme, cumprir metas, seguir o jeito da empresa.</td>
+              </tr>
+              <tr>
+                <th scope="row">Religião</th>
+                <td>Crenças, rituais, noções de certo e errado, vida em comunidade.</td>
+                <td>Participar de cultos, missas, festas e rituais da comunidade.</td>
+              </tr>
+              <tr>
+                <th scope="row">Mídia e redes sociais</th>
+                <td>Modelos de comportamento, consumo, opiniões, padrões de beleza.</td>
+                <td>Copiar um corte de cabelo ou uma tendência vista em um vídeo.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Diversidade da socialização -->
+      <div>
+        <span class="index-num">01.5 DIVERSIDADE E RESPEITO</span>
+        <h3 style="margin-top: var(--space-xs);">Socialização não é igual para todo mundo</h3>
+        <div class="card-grid-4">
+          <div class="figure-card">
+            <span class="tag-chip">Classe Social</span>
+            <p style="font-size: 0.9375rem; margin-top: var(--space-sm);">
+              Quem cresce com poucos recursos muitas vezes aprende cedo a trabalhar e ajudar em casa; quem tem mais recursos acessa cursos, viagens e contatos diferentes — influenciando oportunidades.
+            </p>
+          </div>
+          <div class="figure-card">
+            <span class="tag-chip">Gênero</span>
+            <p style="font-size: 0.9375rem; margin-top: var(--space-sm);">
+              Em muitas famílias, meninos e meninas recebem brinquedos, tarefas e expectativas distintas. Isso é regra aprendida na socialização, e não algo “natural”.
+            </p>
+          </div>
+          <div class="figure-card">
+            <span class="tag-chip">Local e Cultura</span>
+            <p style="font-size: 0.9375rem; margin-top: var(--space-sm);">
+              Crescer no Rio de Janeiro, no sertão nordestino ou em uma comunidade indígena significa incorporar costumes, sotaques e valores próprios.
+            </p>
+          </div>
+          <div class="figure-card">
+            <span class="tag-chip">Época Histórica</span>
+            <p style="font-size: 0.9375rem; margin-top: var(--space-sm);">
+              Nossos avós cresceram sem celular nem internet. O que se esperava de uma criança em 1960 não é o mesmo que se espera hoje.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quadro-Resumo Aula 1 -->
+      <div>
+        <span class="index-num">01.6 QUADRO-RESUMO DA AULA 01</span>
+        <div class="table-wrap" style="margin-top: var(--space-sm);">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Critério</th>
+                <th scope="col">Socialização Primária</th>
+                <th scope="col">Socialização Secundária</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Quando acontece</th>
+                <td>Na infância, nos primeiros anos de vida.</td>
+                <td>Depois da infância, por toda a vida.</td>
+              </tr>
+              <tr>
+                <th scope="row">Onde acontece</th>
+                <td>Principalmente na família ou em cuidadores próximos.</td>
+                <td>Escola, trabalho, religião, grupos, mídia e redes sociais.</td>
+              </tr>
+              <tr>
+                <th scope="row">O que ensina</th>
+                <td>Língua, hábitos básicos, valores iniciais e afetos.</td>
+                <td>Regras e papéis específicos de cada grupo ou ambiente.</td>
+              </tr>
+              <tr>
+                <th scope="row">Característica</th>
+                <td>Marca profunda e duradoura, carregada de afeto.</td>
+                <td>Mais ligada a papéis e regras; pode mudar ao longo da vida.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Glossário Aula 1 -->
+      <details class="glossary-details">
+        <summary class="glossary-summary">
+          <span>Glossário da Aula 01 — Linguagem simples (6 termos-chave)</span>
+          <span class="index-num">Abrir / Fechar</span>
+        </summary>
+        <dl class="glossary-grid">
+          <div class="glossary-term">
+            <dt>Socialização</dt>
+            <dd>Processo pelo qual aprendemos e incorporamos as normas, os valores e os costumes da sociedade.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Norma</dt>
+            <dd>Regra que orienta como devemos nos comportar em determinada situação.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Valor</dt>
+            <dd>Aquilo que consideramos importante, certo ou desejável (como respeito, liberdade, honestidade).</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Papel social</dt>
+            <dd>Conjunto de comportamentos esperados de quem ocupa certa posição (filho, aluno, trabalhador, pai, mãe).</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Agente de socialização</dt>
+            <dd>Instituição ou grupo que nos ensina a viver em sociedade, como a família e a escola.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Costume</dt>
+            <dd>Hábito repetido e aceito por um grupo ao longo do tempo.</dd>
+          </div>
+        </dl>
+      </details>
+
+      <div class="lesson-footer-bar">
+        <span class="dossier-meta">Fim da revisão da Aula 01</span>
+        <button type="button" class="btn btn-secondary btn-done" id="done-btn-aula1" aria-pressed="false" onclick="toggleLessonDone('aula1')">
+          Marcar Aula 01 como revisada
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         AULA 02: CONTROLE SOCIAL
+         ========================================================= -->
+    <section id="aula-2" class="lesson-section" aria-labelledby="heading-aula-2">
+      <div class="dossier-bar">
+        <div class="dossier-bar-left">
+          <span class="dossier-pill">Aula 02</span>
+          <span class="dossier-meta">Data original: 20/10/2026 • Quem vigia, corrige e decide o “normal”</span>
+        </div>
+        <span class="index-num">02 / 04</span>
+      </div>
+
+      <div>
+        <h2 id="heading-aula-2" class="section-title">Controle social: regras, sanções e autocontrole</h2>
+        <p class="section-standfirst">
+          Se a socialização ensina as regras do convívio, o controle social cobra que elas sejam seguidas — dos olhares feios na fila até as leis do Estado.
+        </p>
+      </div>
+
+      <div class="two-col-asymmetric">
+        <div class="figure-card">
+          <span class="index-num">02.1 CONCEITO E COERÇÃO SOCIAL</span>
+          <h3 style="margin-top: var(--space-xs);">O que é controle social?</h3>
+          <p>
+            <strong>Controle social é o conjunto de meios que uma sociedade usa para orientar o comportamento das pessoas, incentivar o que é esperado e desencorajar o que é considerado errado.</strong> Sua função é manter a ordem e a convivência — imagine o trânsito sem semáforos ou uma escola sem combinados.
+          </p>
+          <p>
+            <strong>Émile Durkheim</strong> mostrou que existem formas de agir, pensar e sentir que ficam fora de nós, valem para todos e pressionam cada indivíduo. Ele chamou essa força de <strong>coerção social</strong>. Ninguém usa força física para nos manter na fila do banco, mas sentimos a pressão coletiva: quem fura a fila leva reclamação, olhares feios e fica constrangido.
+          </p>
+        </div>
+
+        <aside class="aside-box">
+          <span class="tag-chip">O desvio muda com o tempo</span>
+          <h4 style="margin-top: var(--space-sm);">Exemplo: fumar em espaços fechados</h4>
+          <p style="font-size: 0.9375rem;">
+            Décadas atrás, era comum fumar dentro de ônibus, aviões e escritórios. Hoje, no Brasil, fumar em locais fechados de uso coletivo é proibido por lei: quem acende um cigarro recebe reprovação e pode ser multado.
+          </p>
+          <p style="font-size: 0.9375rem;">
+            A prática é a mesma; o que mudou foi a <strong>norma social</strong> — provando que o <strong>desvio</strong> varia de época para época e de lugar para lugar.
+          </p>
+        </aside>
+      </div>
+
+      <!-- Normas e Sanções -->
+      <div class="card-grid-3">
+        <article class="figure-card">
+          <span class="index-num">ELEMENTO 01</span>
+          <h3 style="margin-top: var(--space-xs);">Normas sociais</h3>
+          <p style="font-size: 0.9375rem;">
+            Regras que orientam como agir em cada situação. Incluem <strong>costumes e educação</strong> (agradecer, ceder o lugar a um idoso, não falar de boca cheia) e <strong>leis</strong> escritas pelo Estado (parar no sinal vermelho, pagar impostos, não agredir).
+          </p>
+        </article>
+        <article class="figure-card" style="border-top: 3px solid var(--positive);">
+          <span class="index-num">ELEMENTO 02</span>
+          <h3 style="margin-top: var(--space-xs);">Sanções positivas</h3>
+          <p style="font-size: 0.9375rem;">
+            Respostas da sociedade que <strong>recompensam</strong> quem segue as normas: um elogio, um abraço, um certificado escolar, uma promoção no trabalho ou a admiração dos vizinhos.
+          </p>
+        </article>
+        <article class="figure-card" style="border-top: 3px solid var(--error);">
+          <span class="index-num">ELEMENTO 03</span>
+          <h3 style="margin-top: var(--space-xs);">Sanções negativas</h3>
+          <p style="font-size: 0.9375rem;">
+            Respostas da sociedade que <strong>punem</strong> quem descumpre as normas: uma bronca, afastamento dos amigos, suspensão na escola, demissão no emprego, multa ou pena de prisão.
+          </p>
+        </article>
+      </div>
+
+      <!-- Interactive Classifier: Informal vs Formal vs Autocontrole -->
+      <div class="figure-card">
+        <span class="index-num">02.2 TREINO RÁPIDO INTERATIVO</span>
+        <h3 style="margin-top: var(--space-xs);">Identifique o tipo de controle social no dia a dia</h3>
+        <p>
+          Muitas vezes o controle formal e o informal atuam juntos — ou a norma já virou <strong>autocontrole</strong>. Escolha uma cena e teste sua leitura sociológica:
+        </p>
+
+        <div class="pill-row" role="group" aria-label="Selecionar situação cotidiana">
+          <button type="button" class="btn btn-secondary is-active" id="ctrl-scene-0" onclick="selectControlScene(0)">Cena 1: Madrugada</button>
+          <button type="button" class="btn btn-secondary" id="ctrl-scene-1" onclick="selectControlScene(1)">Cena 2: Cinema</button>
+          <button type="button" class="btn btn-secondary" id="ctrl-scene-2" onclick="selectControlScene(2)">Cena 3: Empresa</button>
+          <button type="button" class="btn btn-secondary" id="ctrl-scene-3" onclick="selectControlScene(3)">Cena 4: Formatura EJA</button>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-quote" id="ctrl-quote">
+            Às 2h da manhã, sem nenhum carro na rua e sem guarda por perto, um trabalhador para na faixa de pedestres e espera o sinal abrir.
+          </div>
+
+          <div class="pill-row" role="group" aria-label="Classificar cena">
+            <button type="button" class="btn btn-secondary" onclick="checkControlAnswer('informal')">Controle Informal</button>
+            <button type="button" class="btn btn-secondary" onclick="checkControlAnswer('formal')">Controle Formal</button>
+            <button type="button" class="btn btn-secondary" onclick="checkControlAnswer('autocontrole')">Autocontrole</button>
+            <button type="button" class="btn btn-secondary" onclick="checkControlAnswer('positiva')">Sanção Positiva</button>
+          </div>
+
+          <div id="ctrl-feedback" class="feedback-banner" style="display: none;" aria-live="polite"></div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="table-wrap" style="margin-top: var(--space-lg);">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Aspecto</th>
+                <th scope="col">Controle Informal</th>
+                <th scope="col">Controle Formal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Como funciona</th>
+                <td>Regras não escritas, baseadas em costumes, valores e convivência.</td>
+                <td>Regras escritas, oficiais, com procedimentos e punições definidos.</td>
+              </tr>
+              <tr>
+                <th scope="row">Quem exerce</th>
+                <td>Família, vizinhos, amigos, grupo religioso, colegas de trabalho.</td>
+                <td>Estado, polícia, justiça, escola e empresa (por regulamentos).</td>
+              </tr>
+              <tr>
+                <th scope="row">Sanções</th>
+                <td>Bronca, conselho, fofoca, ironia, olhar de reprovação, exclusão, elogio.</td>
+                <td>Multa, advertência, suspensão, demissão, processo judicial, prisão.</td>
+              </tr>
+              <tr>
+                <th scope="row">Exemplo</th>
+                <td>Colegas reclamam de quem fala alto no cinema.</td>
+                <td>Empresa demite quem falta sem justificativa, conforme o contrato.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Critical Reflection & Brazilian History -->
+      <div>
+        <span class="index-num">02.3 OLHAR CRÍTICO • HISTÓRIA DO BRASIL</span>
+        <h3 style="margin-top: var(--space-xs);">Controle social a serviço de quem?</h3>
+        <p>
+          O controle social é necessário para a convivência, mas <strong>não é neutro e nem sempre é justo</strong>. Quem cria as regras pode defender os próprios interesses — por isso uma norma pode ser <em>legal</em> e, ao mesmo tempo, <em>injusta</em>. A história brasileira prova que as regras mudam quando a sociedade se organiza e luta:
+        </p>
+
+        <div class="timeline-list">
+          <article class="timeline-item">
+            <div class="timeline-year">1890 → Hoje</div>
+            <h4>Proibição da Capoeira</h4>
+            <p style="font-size: 0.9375rem;">
+              O Código Penal de 1890 (Decreto nº 847) criminalizou a capoeira e seus praticantes podiam ser presos. Hoje, a roda de capoeira é reconhecida como patrimônio cultural brasileiro.
+            </p>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-year">1932</div>
+            <h4>Voto Feminino</h4>
+            <p style="font-size: 0.9375rem;">
+              Por muito tempo a lei impediu mulheres de votar. Só em 1932, com o Código Eleitoral, as mulheres conquistaram esse direito político no Brasil após intensa mobilização.
+            </p>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-year">Até 1985</div>
+            <h4>Voto das Pessoas Analfabetas</h4>
+            <p style="font-size: 0.9375rem;">
+              Pessoas não alfabetizadas foram proibidas de votar por décadas e só reconquistaram o direito com a Emenda Constitucional nº 25, de 1985 — realidade próxima de muitos estudantes da EJA.
+            </p>
+          </article>
+        </div>
+
+        <aside class="aside-box" style="margin-top: var(--space-md);">
+          <strong>Três perguntas sociológicas para levar para a prova e para a vida:</strong>
+          Quem criou essa regra? Quem ela protege? Quem ela deixa de fora?
+        </aside>
+      </div>
+
+      <!-- Quadro-Resumo Aula 2 -->
+      <div>
+        <span class="index-num">02.4 QUADRO-RESUMO DA AULA 02</span>
+        <div class="table-wrap" style="margin-top: var(--space-sm);">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Conceito</th>
+                <th scope="col">Em poucas palavras</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Controle social</th>
+                <td>Meios que a sociedade usa para orientar o comportamento e manter a ordem.</td>
+              </tr>
+              <tr>
+                <th scope="row">Norma social</th>
+                <td>Regra que diz como devemos agir (costumes, regras de educação e leis).</td>
+              </tr>
+              <tr>
+                <th scope="row">Sanção</th>
+                <td>Resposta da sociedade ao comportamento: positiva (recompensa) ou negativa (punição).</td>
+              </tr>
+              <tr>
+                <th scope="row">Controle informal</th>
+                <td>Exercido no dia a dia por família, amigos, vizinhos e grupos, sem regras escritas.</td>
+              </tr>
+              <tr>
+                <th scope="row">Controle formal</th>
+                <td>Exercido por instituições com regras escritas e punições previstas (justiça, polícia, escola).</td>
+              </tr>
+              <tr>
+                <th scope="row">Autocontrole</th>
+                <td>Quando as normas foram tão bem incorporadas que a própria pessoa se vigia.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Glossário Aula 2 -->
+      <details class="glossary-details">
+        <summary class="glossary-summary">
+          <span>Glossário da Aula 02 — Linguagem simples (6 termos-chave)</span>
+          <span class="index-num">Abrir / Fechar</span>
+        </summary>
+        <dl class="glossary-grid">
+          <div class="glossary-term">
+            <dt>Coerção social</dt>
+            <dd>Pressão que o grupo exerce sobre cada pessoa para que siga as regras.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Conformidade</dt>
+            <dd>Ato de seguir as normas e as expectativas do grupo.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Desvio</dt>
+            <dd>Comportamento que foge às normas de um grupo ou de uma sociedade em certo momento.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Sanção</dt>
+            <dd>Reação da sociedade a um comportamento, podendo ser de recompensa ou de punição.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Lei</dt>
+            <dd>Norma escrita, criada pelo Estado, que vale para todos os cidadãos.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Autocontrole</dt>
+            <dd>Controle que a pessoa exerce sobre si mesma por já ter incorporado as normas na socialização.</dd>
+          </div>
+        </dl>
+      </details>
+
+      <div class="lesson-footer-bar">
+        <span class="dossier-meta">Fim da revisão da Aula 02</span>
+        <button type="button" class="btn btn-secondary btn-done" id="done-btn-aula2" aria-pressed="false" onclick="toggleLessonDone('aula2')">
+          Marcar Aula 02 como revisada
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         AULA 03: STATUS E PAPÉIS SOCIAIS
+         ========================================================= -->
+    <section id="aula-3" class="lesson-section" aria-labelledby="heading-aula-3">
+      <div class="dossier-bar">
+        <div class="dossier-bar-left">
+          <span class="dossier-pill">Aula 03</span>
+          <span class="dossier-meta">Data original: 27/10/2026 • Os lugares que ocupamos e o que esperam de nós</span>
+        </div>
+        <span class="index-num">03 / 04</span>
+      </div>
+
+      <div>
+        <h2 id="heading-aula-3" class="section-title">Status e papéis sociais: o palco da vida cotidiana</h2>
+        <p class="section-standfirst">
+          A sociedade não espera a mesma coisa de todo mundo: cada posição social carrega expectativas, prestígio e, muitas vezes, conflitos reais para quem estuda na EJA.
+        </p>
+      </div>
+
+      <!-- Linton Status vs Papel + Goffman -->
+      <div class="two-col-asymmetric">
+        <div class="figure-card">
+          <span class="index-num">03.1 RALPH LINTON E ERVING GOFFMAN</span>
+          <h3 style="margin-top: var(--space-xs);">Status é o lugar; papel é a ação</h3>
+          <p>
+            No dia a dia, falamos em “ostentar status” como sinônimo de riqueza. Na Sociologia, <strong>status é qualquer posição que uma pessoa ocupa em um grupo ou na sociedade</strong>. Segundo o antropólogo <strong>Ralph Linton (1893–1953)</strong>, todo mundo tem vários status ao mesmo tempo: mãe, filho, pedreiro, motorista, estudante da EJA, vizinho, torcedor.
+          </p>
+          <p>
+            Já o <strong>papel social</strong> é o comportamento que se espera de quem ocupa determinado status. Como resumiu Linton: <strong>“o status a gente ocupa; o papel a gente desempenha.”</strong> Essas expectativas são aprendidas na socialização e cobradas pelo controle social (do professor espera-se preparo e respeito; do estudante, presença e atividades; do motorista, direção segura).
+          </p>
+
+          <div class="table-wrap" style="margin-top: var(--space-md);">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Critério</th>
+                  <th scope="col">Status Atribuído</th>
+                  <th scope="col">Status Adquirido</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Como se obtém</th>
+                  <td>Sem escolha: vem do nascimento, idade ou origem.</td>
+                  <td>Por escolha, esforço ou oportunidade.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Pode mudar?</th>
+                  <td>Em geral, não depende da vontade da pessoa.</td>
+                  <td>Sim, pode ser conquistado ou perdido.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Exemplos</th>
+                  <td>Filho, irmã, jovem, idoso, carioca, sexo.</td>
+                  <td>Professora, eletricista, estudante da EJA, formado.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size: 0.875rem; color: var(--on-surface-variant); margin-top: var(--space-sm);">
+            *Nota: alguns status ficam no meio do caminho — ser pai/mãe nem sempre é escolha, e ser aposentado combina tempo de trabalho com idade.*
+          </p>
+        </div>
+
+        <aside class="aside-box">
+          <span class="tag-chip">Curiosidade Sociológica</span>
+          <h4 style="margin-top: var(--space-sm);">Erving Goffman: a vida como um teatro</h4>
+          <p style="font-size: 0.9375rem;">
+            O sociólogo canadense <strong>Erving Goffman (1922–1982)</strong> comparou a vida social a um teatro. Em cada situação, desempenhamos um papel diante de uma “plateia”: agimos de um jeito numa entrevista de emprego, de outro em casa, de outro com amigos no bar.
+          </p>
+          <p style="font-size: 0.9375rem;">
+            Isso não significa falsidade: mostra que <strong>sabemos o que se espera de nós em cada palco</strong> e ajustamos nosso comportamento às normas do ambiente.
+          </p>
+          <hr style="border: 0; border-top: var(--card-border); margin: var(--space-md) 0;">
+          <h4>Status Principal</h4>
+          <p style="font-size: 0.9375rem;">
+            Entre os vários status de alguém, há um que mais marca como os outros o enxergam — muitas vezes a profissão (“o que você faz?”), mas também idade, cor da pele ou deficiência, o que pode gerar preconceitos.
+          </p>
+        </aside>
+      </div>
+
+      <!-- Interactive Case Study: Dona Célia -->
+      <div class="figure-card">
+        <span class="index-num">03.2 ESTUDO DE CASO INTERATIVO</span>
+        <h3 style="margin-top: var(--space-xs);">Um dia na vida de Dona Célia (47 anos): muitos status, muitos papéis</h3>
+        <p>
+          Dona Célia é a mesma pessoa o dia inteiro, mas o que a sociedade espera dela muda em cada ambiente. Clique nos momentos do dia dela para acompanhar os papéis em movimento:
+        </p>
+
+        <div class="pill-row" role="group" aria-label="Momentos do dia de Dona Célia">
+          <button type="button" class="btn btn-secondary is-active" id="celia-btn-0" onclick="selectCeliaStep(0)">06h • Casa</button>
+          <button type="button" class="btn btn-secondary" id="celia-btn-1" onclick="selectCeliaStep(1)">07h • Ônibus</button>
+          <button type="button" class="btn btn-secondary" id="celia-btn-2" onclick="selectCeliaStep(2)">08h–17h • Restaurante</button>
+          <button type="button" class="btn btn-secondary" id="celia-btn-3" onclick="selectCeliaStep(3)">17h30 • Mercado e Ligação</button>
+          <button type="button" class="btn btn-secondary" id="celia-btn-4" onclick="selectCeliaStep(4)">19h • Escola EJA</button>
+          <button type="button" class="btn btn-secondary" id="celia-btn-5" onclick="selectCeliaStep(5)">Fim de semana • Bairro</button>
+        </div>
+
+        <div class="spotlight-panel" id="celia-panel" aria-live="polite">
+          <div class="spotlight-grid">
+            <div>
+              <div class="spotlight-label">Momento e palco social</div>
+              <strong id="celia-moment" style="color: var(--on-surface);">06h00 — Cozinha de casa</strong>
+            </div>
+            <div>
+              <div class="spotlight-label">Status ocupado</div>
+              <strong id="celia-status" style="color: var(--secondary);">Avó (Status familiar)</strong>
+            </div>
+            <div>
+              <div class="spotlight-label">Papel esperado</div>
+              <p id="celia-role" style="font-size: 0.9375rem;">Prepara o café da manhã dos netos com cuidado e afeto antes de sair para o trabalho.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conflito de papéis e desigualdades -->
+      <div class="equal-two-col">
+        <article class="figure-card" style="border-left: 4px solid var(--tertiary);">
+          <span class="index-num">03.3 CONFLITO DE PAPÉIS NA EJA</span>
+          <h3 style="margin-top: var(--space-xs);">Quando as expectativas batem de frente</h3>
+          <p>
+            Ocorre <strong>conflito de papéis</strong> quando as exigências de um papel entram em choque com as de outro ao mesmo tempo. Quem estuda na EJA conhece isso de perto:
+          </p>
+          <ul class="clean-list">
+            <li>O patrão pede hora extra exatamente na noite da prova;</li>
+            <li>O filho fica doente no dia de entregar um trabalho importante;</li>
+            <li>A família reclama que a pessoa “só pensa em estudar”.</li>
+          </ul>
+          <p style="margin-top: var(--space-md); font-size: 0.9375rem;">
+            Entender que esse aperto é um <strong>conflito social</strong> — e não falta de esforço individual — ajuda a compreender por que tantos precisaram parar e por que voltar à escola é uma conquista coletiva.
+          </p>
+        </article>
+
+        <article class="figure-card" style="border-left: 4px solid var(--secondary);">
+          <span class="index-num">03.4 STATUS, PAPÉIS E DESIGUALDADE</span>
+          <h3 style="margin-top: var(--space-xs);">Nem todos os lugares têm o mesmo valor</h3>
+          <p>
+            Os status não recebem o mesmo <strong>prestígio</strong>, renda ou poder: um médico e uma diarista trabalham muito, mas ocupam posições com reconhecimento e salários desiguais.
+          </p>
+          <p>
+            Além disso, status atribuídos como <strong>gênero, cor da pele e origem social</strong> ainda pesam no acesso a oportunidades no Brasil. Durante muito tempo se cobrou que a mulher cuidasse da casa e o homem fosse o único provedor — papéis aprendidos na socialização, <strong>não naturais</strong>, que mudam quando as pessoas questionam e lutam por novas formas de viver.
+          </p>
+        </article>
+      </div>
+
+      <!-- Quadro-Resumo Aula 3 -->
+      <div>
+        <span class="index-num">03.5 QUADRO-RESUMO DA AULA 03</span>
+        <div class="table-wrap" style="margin-top: var(--space-sm);">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Conceito</th>
+                <th scope="col">Em poucas palavras</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Status</th>
+                <td>Posição que a pessoa ocupa em um grupo ou na sociedade.</td>
+              </tr>
+              <tr>
+                <th scope="row">Status atribuído</th>
+                <td>Recebido sem escolha, como ser filho, a idade ou o lugar onde nasceu.</td>
+              </tr>
+              <tr>
+                <th scope="row">Status adquirido</th>
+                <td>Conquistado por escolha, esforço ou oportunidade, como uma profissão.</td>
+              </tr>
+              <tr>
+                <th scope="row">Papel social</th>
+                <td>Comportamento esperado de quem ocupa determinado status.</td>
+              </tr>
+              <tr>
+                <th scope="row">Status principal</th>
+                <td>O status que mais marca a forma como os outros enxergam a pessoa.</td>
+              </tr>
+              <tr>
+                <th scope="row">Conflito de papéis</th>
+                <td>Quando as expectativas de dois papéis entram em choque no mesmo momento.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Glossário Aula 3 -->
+      <details class="glossary-details">
+        <summary class="glossary-summary">
+          <span>Glossário da Aula 03 — Linguagem simples (4 termos-chave)</span>
+          <span class="index-num">Abrir / Fechar</span>
+        </summary>
+        <dl class="glossary-grid">
+          <div class="glossary-term">
+            <dt>Expectativa social</dt>
+            <dd>Aquilo que os outros esperam que façamos, de acordo com a posição que ocupamos.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Prestígio</dt>
+            <dd>Reconhecimento e valor que a sociedade dá a determinado status.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Posição social</dt>
+            <dd>Lugar que a pessoa ocupa na sociedade; sinônimo de status.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Desempenhar um papel</dt>
+            <dd>Agir de acordo com o que se espera de uma posição social.</dd>
+          </div>
+        </dl>
+      </details>
+
+      <div class="lesson-footer-bar">
+        <span class="dossier-meta">Fim da revisão da Aula 03</span>
+        <button type="button" class="btn btn-secondary btn-done" id="done-btn-aula3" aria-pressed="false" onclick="toggleLessonDone('aula3')">
+          Marcar Aula 03 como revisada
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         AULA 04: ESTADO, PODER E CONTROLE
+         ========================================================= -->
+    <section id="aula-4" class="lesson-section" aria-labelledby="heading-aula-4">
+      <div class="dossier-bar">
+        <div class="dossier-bar-left">
+          <span class="dossier-pill">Aula 04</span>
+          <span class="dossier-meta">Data original: 17/11/2026 • Althusser e Foucault</span>
+        </div>
+        <span class="index-num">04 / 04</span>
+      </div>
+
+      <div>
+        <h2 id="heading-aula-4" class="section-title">Estado, poder e controle: por que obedecemos sem perceber?</h2>
+        <p class="section-standfirst">
+          Dois grandes pensadores franceses do século XX investigaram como o poder funciona: Louis Althusser olhou para os aparelhos do Estado; Michel Foucault olhou para a disciplina do dia a dia.
+        </p>
+      </div>
+
+      <!-- PARTE 1: LOUIS ALTHUSSER -->
+      <div class="figure-card" style="border-top: 3px solid var(--secondary);">
+        <span class="index-num">04.1 PARTE 1 — LOUIS ALTHUSSER (1918–1990)</span>
+        <h3 style="margin-top: var(--space-xs);">Os Aparelhos Repressivos e Ideológicos de Estado</h3>
+        <p>
+          Ligado ao pensamento de <strong>Karl Marx</strong> (sociedade capitalista dividida entre donos dos meios de produção e trabalhadores que vendem sua força de trabalho), Althusser perguntou em seu texto de 1970 (<em>“Aparelhos ideológicos de Estado”</em>): <strong>se essa sociedade é desigual, por que ela continua funcionando geração após geração?</strong>
+        </p>
+        <p>
+          Resposta: porque o Estado garante a <strong>reprodução social</strong> (manter patrões e trabalhadores em seus lugares) usando dois tipos de aparelhos que se completam — o que muda é o que predomina em cada um:
+        </p>
+
+        <div class="equal-two-col" style="margin-top: var(--space-md);">
+          <div class="spotlight-panel" style="border-left-color: var(--error);">
+            <div class="spotlight-label">ARE — Pela força</div>
+            <h4>Aparelhos Repressivos de Estado</h4>
+            <p style="font-size: 0.9375rem;">
+              Mantêm a ordem principalmente pela <strong>força, ameaça e punição</strong>: governo, administração pública, exército, polícia, tribunais e prisões. Agem quando há violação da lei, greve considerada ilegal ou protesto fora de controle.
+            </p>
+          </div>
+          <div class="spotlight-panel" style="border-left-color: var(--tertiary);">
+            <div class="spotlight-label">AIE — Pelas ideias</div>
+            <h4>Aparelhos Ideológicos de Estado</h4>
+            <p style="font-size: 0.9375rem;">
+              Nenhum governo se sustenta só com um policial ao lado de cada cidadão. Os AIE agem pela <strong>ideologia</strong>: ideias e crenças que fazem a desigualdade parecer natural — como “sempre foi assim”, “pobre não se esforça” ou “cada um no seu lugar”.
+            </p>
+          </div>
+        </div>
+
+        <div class="table-wrap" style="margin-top: var(--space-lg);">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Aparelho Ideológico (AIE)</th>
+                <th scope="col">Como transmite ideias e faz aceitar a ordem</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Escolar (o principal no capitalismo)</th>
+                <td>Escolas e universidades: ensinam conteúdos, mas também disciplina, pontualidade, obediência e aceitação de avaliações cobradas no trabalho.</td>
+              </tr>
+              <tr>
+                <th scope="row">Familiar</th>
+                <td>Transmite valores, papéis de homem e mulher e noções de certo e errado.</td>
+              </tr>
+              <tr>
+                <th scope="row">Religioso</th>
+                <td>Igrejas e templos: ensinam crenças e regras de conduta moral.</td>
+              </tr>
+              <tr>
+                <th scope="row">De informação</th>
+                <td>Imprensa, rádio, TV e internet: mostram o mundo a partir de um certo ponto de vista.</td>
+              </tr>
+              <tr>
+                <th scope="row">Cultural</th>
+                <td>Artes, literatura, esportes e entretenimento: difundem modelos de comportamento e sucesso.</td>
+              </tr>
+              <tr>
+                <th scope="row">Jurídico e político</th>
+                <td>Leis, partidos e eleições: fazem a ordem existente parecer legítima.</td>
+              </tr>
+              <tr>
+                <th scope="row">Sindical</th>
+                <td>Sindicatos: organizam trabalhadores dentro das regras do sistema.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <aside class="aside-box" style="margin-top: var(--space-lg);">
+          <span class="tag-chip">Para pensar: a interpelação</span>
+          <h4 style="margin-top: var(--space-xs);">“Ei, você aí!”</h4>
+          <p style="font-size: 0.9375rem;">
+            Althusser dava um exemplo simples: um policial grita na rua <strong>“Ei, você aí!”</strong> e quase todo mundo se vira, achando que é consigo. A ideologia funciona assim: ela nos chama o tempo todo (“bom trabalhador”, “bom cidadão”, “boa mãe”) e nós respondemos, acreditando que essas ideias nasceram naturalmente em nós.
+          </p>
+        </aside>
+      </div>
+
+      <!-- PARTE 2: MICHEL FOUCAULT -->
+      <div class="figure-card" style="border-top: 3px solid var(--primary-container);">
+        <span class="index-num">04.2 PARTE 2 — MICHEL FOUCAULT (1926–1984)</span>
+        <h3 style="margin-top: var(--space-xs);">Do suplício à sociedade disciplinar</h3>
+        <p>
+          Em <em>“Vigiar e punir”</em> (1975), Foucault mostrou como a punição mudou na Europa entre os séculos XVIII e XIX. Até o século XVIII havia o <strong>suplício</strong>: torturas e execuções em praça pública para exibir a força do rei no corpo do condenado. Depois surgiu a <strong>prisão</strong>: trancar, vigiar, controlar horários e corrigir comportamentos — não apenas por “mais humanidade”, mas como uma nova forma de poder mais discreta e eficiente.
+        </p>
+        <p>
+          Foucault chamou esse poder de <strong>disciplina</strong>, presente não só nas prisões, mas nas <strong>escolas, fábricas, quartéis e hospitais</strong> (a <strong>sociedade disciplinar</strong>). Seu objetivo é produzir <strong>“corpos dóceis”</strong>: pessoas obedientes e, ao mesmo tempo, úteis e produtivas, por meio do controle do <strong>tempo</strong> (horários, ponto), do <strong>espaço</strong> (cada um em sua carteira/posto) e dos <strong>gestos</strong> (sentar, fazer fila).
+        </p>
+
+        <div class="card-grid-3" style="margin-top: var(--space-md);">
+          <div class="aside-box">
+            <span class="index-num">INSTRUMENTO 01</span>
+            <h4 style="margin-top: var(--space-xs);">Vigilância</h4>
+            <p style="font-size: 0.9375rem;">Observar as pessoas o tempo todo por meio de chefes, inspetores, supervisores e, hoje, câmeras.</p>
+          </div>
+          <div class="aside-box">
+            <span class="index-num">INSTRUMENTO 02</span>
+            <h4 style="margin-top: var(--space-xs);">Sanção normalizadora</h4>
+            <p style="font-size: 0.9375rem;">Pequenas punições e recompensas para “corrigir” quem foge do padrão: advertências, descontos, notas baixas ou elogios.</p>
+          </div>
+          <div class="aside-box">
+            <span class="index-num">INSTRUMENTO 03</span>
+            <h4 style="margin-top: var(--space-xs);">Exame</h4>
+            <p style="font-size: 0.9375rem;">Avaliar, medir, comparar e classificar as pessoas: provas escolares, avaliações de desempenho e exames médicos.</p>
+          </div>
+        </div>
+        <p style="margin-top: var(--space-md); font-size: 0.9375rem;">
+          Para Foucault, o poder <strong>não está só no Estado</strong>: ele está <strong>espalhado</strong> pelas relações do dia a dia (professor–aluno, patrão–empregado, médico–paciente) e não apenas proíbe — ele <strong>produz</strong> hábitos e formas de ser.
+        </p>
+      </div>
+
+      <!-- Interactive Panopticon Diagram -->
+      <div class="figure-card">
+        <span class="index-num">04.3 ESQUEMA INTERATIVO</span>
+        <h3 style="margin-top: var(--space-xs);">O Panóptico de Jeremy Bentham: vigiar sem ser visto</h3>
+        <p>
+          No fim do século XVIII, o inglês <strong>Jeremy Bentham</strong> idealizou uma prisão circular com celas ao redor e uma torre central. Alterne os modos abaixo para entender por que Foucault tornou o Panóptico o símbolo da sociedade disciplinar:
+        </p>
+
+        <div class="pill-row" role="group" aria-label="Modos do Panóptico">
+          <button type="button" class="btn btn-secondary is-active" id="pan-btn-guard" onclick="setPanopticonMode('guard')">1. Guarda na torre</button>
+          <button type="button" class="btn btn-secondary" id="pan-btn-empty" onclick="setPanopticonMode('empty')">2. Torre vazia (sem guarda)</button>
+          <button type="button" class="btn btn-secondary" id="pan-btn-today" onclick="setPanopticonMode('today')">3. Panóptico no século XXI</button>
+        </div>
+
+        <div class="panopticon-layout">
+          <div class="panopticon-svg-wrap">
+            <svg viewBox="0 0 260 260" class="panopticon-svg" role="img" aria-label="Esquema circular do Panóptico com celas ao redor e torre de vigilância no centro">
+              <!-- Outer wall -->
+              <circle cx="130" cy="130" r="112" class="svg-ring"></circle>
+              <!-- Cells around ring (8 sectors simplified as inner blocks) -->
+              <rect x="112" y="22" width="36" height="24" rx="2" class="svg-cell"></rect>
+              <rect x="176" y="42" width="32" height="24" rx="2" transform="rotate(45 192 54)" class="svg-cell"></rect>
+              <rect x="214" y="112" width="24" height="36" rx="2" class="svg-cell"></rect>
+              <rect x="176" y="194" width="32" height="24" rx="2" transform="rotate(-45 192 206)" class="svg-cell"></rect>
+              <rect x="112" y="214" width="36" height="24" rx="2" class="svg-cell"></rect>
+              <rect x="52" y="194" width="32" height="24" rx="2" transform="rotate(45 68 206)" class="svg-cell"></rect>
+              <rect x="22" y="112" width="24" height="36" rx="2" class="svg-cell"></rect>
+              <rect x="52" y="42" width="32" height="24" rx="2" transform="rotate(-45 68 54)" class="svg-cell"></rect>
+
+              <!-- Sightline cones -->
+              <polygon id="pan-beam-1" points="130,130 105,46 155,46" class="svg-beam"></polygon>
+              <polygon id="pan-beam-2" points="130,130 214,105 214,155" class="svg-beam"></polygon>
+              <polygon id="pan-beam-3" points="130,130 105,214 155,214" class="svg-beam"></polygon>
+              <polygon id="pan-beam-4" points="130,130 46,105 46,155" class="svg-beam"></polygon>
+
+              <!-- Prisoner dots -->
+              <circle cx="130" cy="34" r="5" class="svg-person"></circle>
+              <circle cx="226" cy="130" r="5" class="svg-person"></circle>
+              <circle cx="130" cy="226" r="5" class="svg-person"></circle>
+              <circle cx="34" cy="130" r="5" class="svg-person"></circle>
+
+              <!-- Central Watchtower -->
+              <circle id="pan-tower" cx="130" cy="130" r="28" class="svg-tower"></circle>
+              <text id="pan-tower-text" x="130" y="133" class="svg-label" style="fill: var(--on-primary);">TORRE</text>
+              <text x="130" y="14" class="svg-label">CELAS CIRCULARES</text>
+            </svg>
+          </div>
+
+          <div class="spotlight-panel" id="pan-explanation" aria-live="polite">
+            <span class="tag-chip tag-chip--petrol" id="pan-tag">Vigilância Assimétrica</span>
+            <h4 id="pan-title" style="margin-top: var(--space-sm);">O guarda vê todos, mas ninguém vê o guarda</h4>
+            <p id="pan-body" style="font-size: 0.9375rem;">
+              Da torre central, o vigilante observa todas as celas iluminadas ao redor. Os presos, porém, não conseguem enxergar o interior da torre escura.
+            </p>
+            <p id="pan-takeaway" style="font-size: 0.9375rem; font-weight: 600; color: var(--secondary);">
+              Efeito: os presos agem o tempo todo como se estivessem sendo observados.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quadro Comparativo Althusser vs Foucault -->
+      <div>
+        <span class="index-num">04.4 QUADRO COMPARATIVO PARA A PROVA</span>
+        <h3 style="margin-top: var(--space-xs);">Louis Althusser vs. Michel Foucault</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Critério</th>
+                <th scope="col">Louis Althusser</th>
+                <th scope="col">Michel Foucault</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Obra principal</th>
+                <td>“Aparelhos ideológicos de Estado” (1970)</td>
+                <td>“Vigiar e punir” (1975)</td>
+              </tr>
+              <tr>
+                <th scope="row">Onde está o poder?</th>
+                <td>Concentrado no Estado e a serviço da classe dominante.</td>
+                <td>Espalhado pelas relações e instituições do dia a dia.</td>
+              </tr>
+              <tr>
+                <th scope="row">Como funciona?</th>
+                <td>Pela força (ARE) e pelas ideias/ideologia (AIE).</td>
+                <td>Pela disciplina: vigilância, sanção normalizadora e exame.</td>
+              </tr>
+              <tr>
+                <th scope="row">Para quê?</th>
+                <td>Reproduzir a sociedade capitalista e suas desigualdades.</td>
+                <td>Formar corpos dóceis: obedientes e produtivos.</td>
+              </tr>
+              <tr>
+                <th scope="row">Exemplo na escola</th>
+                <td>Ensina a aceitar a ordem social e o “lugar” de cada um.</td>
+                <td>Controla horários, carteiras, comportamentos e aplica provas.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top: var(--space-md); font-size: 0.9375rem;">
+          <strong>Síntese crítica:</strong> perceber como o poder foi ensinado, vigiado e cobrado é o primeiro passo para <strong>questioná-lo</strong> e imaginar outras formas de viver juntos.
+        </p>
+      </div>
+
+      <!-- Glossário Aula 4 -->
+      <details class="glossary-details">
+        <summary class="glossary-summary">
+          <span>Glossário da Aula 04 — Linguagem simples (7 termos-chave)</span>
+          <span class="index-num">Abrir / Fechar</span>
+        </summary>
+        <dl class="glossary-grid">
+          <div class="glossary-term">
+            <dt>Estado</dt>
+            <dd>Conjunto de instituições que governam um país (governo, leis, tribunais, forças armadas, escolas públicas etc.).</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Ideologia</dt>
+            <dd>Conjunto de ideias e valores que orienta como vemos o mundo e pode fazer a desigualdade parecer natural.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Repressão</dt>
+            <dd>Uso da força, da ameaça ou da punição para impor a ordem.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Reprodução social</dt>
+            <dd>Processo pelo qual a sociedade se mantém igual, com as mesmas posições e desigualdades.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Disciplina</dt>
+            <dd>Conjunto de técnicas para controlar o tempo, o espaço e o comportamento das pessoas.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Corpos dóceis</dt>
+            <dd>Expressão de Foucault para pessoas tornadas obedientes e úteis pela disciplina.</dd>
+          </div>
+          <div class="glossary-term">
+            <dt>Panóptico</dt>
+            <dd>Modelo de prisão em que todos podem ser vigiados sem saber quando estão sendo observados.</dd>
+          </div>
+        </dl>
+      </details>
+
+      <div class="lesson-footer-bar">
+        <span class="dossier-meta">Fim da revisão da Aula 04</span>
+        <button type="button" class="btn btn-secondary btn-done" id="done-btn-aula4" aria-pressed="false" onclick="toggleLessonDone('aula4')">
+          Marcar Aula 04 como revisada
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SIMULADO INTERATIVO DE FIXAÇÃO
+         ========================================================= -->
+    <section id="simulado" class="lesson-section" aria-labelledby="heading-simulado">
+      <div class="dossier-bar">
+        <div class="dossier-bar-left">
+          <span class="dossier-pill">Simulado de Prova</span>
+          <span class="dossier-meta">12 Questões Comentadas • Feedback Imediato</span>
+        </div>
+        <span class="index-num">TESTE FINAL</span>
+      </div>
+
+      <div>
+        <h2 id="heading-simulado" class="section-title">Simulado de fixação: teste seus conhecimentos</h2>
+        <p class="section-standfirst">
+          Responda às 12 questões baseadas nas quatro aulas do bimestre. Ao clicar em uma alternativa, você recebe na hora a correção e a explicação sociológica.
+        </p>
+      </div>
+
+      <div class="quiz-dashboard">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-md);">
+          <div class="pill-row" style="margin-bottom: 0;" role="group" aria-label="Filtrar questões por aula">
+            <button type="button" class="btn btn-secondary is-active" id="filter-btn-all" onclick="setQuizFilter('all')">Todas (12)</button>
+            <button type="button" class="btn btn-secondary" id="filter-btn-aula1" onclick="setQuizFilter('aula1')">Aula 1 (3)</button>
+            <button type="button" class="btn btn-secondary" id="filter-btn-aula2" onclick="setQuizFilter('aula2')">Aula 2 (3)</button>
+            <button type="button" class="btn btn-secondary" id="filter-btn-aula3" onclick="setQuizFilter('aula3')">Aula 3 (3)</button>
+            <button type="button" class="btn btn-secondary" id="filter-btn-aula4" onclick="setQuizFilter('aula4')">Aula 4 (3)</button>
+          </div>
+          <button type="button" class="btn btn-secondary" id="reset-quiz-btn" onclick="resetQuiz(this)">Reiniciar Simulado</button>
+        </div>
+
+        <div class="quiz-stats-grid">
+          <div class="quiz-stat-box">
+            <div class="kpi-value" id="stat-answered">0/12</div>
+            <div class="kpi-label">Respondidas</div>
+          </div>
+          <div class="quiz-stat-box">
+            <div class="kpi-value" id="stat-correct" style="color: var(--positive);">0</div>
+            <div class="kpi-label">Acertos</div>
+          </div>
+          <div class="quiz-stat-box">
+            <div class="kpi-value" id="stat-wrong" style="color: var(--error);">0</div>
+            <div class="kpi-label">Para revisar</div>
+          </div>
+          <div class="quiz-stat-box">
+            <div class="kpi-value" id="stat-grade">—</div>
+            <div class="kpi-label">Nota estimada (0–10)</div>
+          </div>
+        </div>
+
+        <p id="quiz-diagnosis" style="font-size: 0.9375rem; color: var(--on-surface-variant); margin: 0;">
+          Escolha uma alternativa em qualquer questão abaixo para começar o simulado. Seu progresso fica salvo automaticamente.
+        </p>
+      </div>
+
+      <div id="quiz-container" style="display: flex; flex-direction: column; gap: var(--space-lg);"></div>
+    </section>
+
+    <!-- REFERENCES FOOTER -->
+    <footer class="footer-refs">
+      <p style="margin-bottom: var(--space-xs); color: var(--on-surface); font-weight: 600;">
+        Referências de apoio das aulas (Prof. Getulio Fidelis — Colégio Everest Internacional, EJA Fase 1):
+      </p>
+      <p>
+        ALTHUSSER, Louis. <em>Aparelhos ideológicos de Estado</em>. Rio de Janeiro: Graal. •
+        BERGER, Peter; LUCKMANN, Thomas. <em>A construção social da realidade</em>. Petrópolis: Vozes. •
+        DURKHEIM, Émile. <em>Educação e sociologia</em>; <em>As regras do método sociológico</em>. •
+        FOUCAULT, Michel. <em>Vigiar e punir: nascimento da prisão</em>. Petrópolis: Vozes. •
+        GIDDENS, Anthony. <em>Sociologia</em>. Porto Alegre: Penso. •
+        GOFFMAN, Erving. <em>A representação do eu na vida cotidiana</em>. Petrópolis: Vozes. •
+        LINTON, Ralph. <em>O homem: uma introdução à antropologia</em>. São Paulo: Martins Fontes. •
+        Legislação histórica citada: Decreto nº 847/1890 (Código Penal), Decreto nº 21.076/1932 (Código Eleitoral) e Emenda Constitucional nº 25/1985.
+      </p>
+    </footer>
+
+  </div>
+
+  <api-shim></api-shim>
+  <script>
+    const AGENTS_DATA = {
+      familia: {
+        title: `Família (Primeiro agente)`,
+        phase: `Socialização Primária`,
+        teaches: `Língua, valores, hábitos cotidianos, afeto, religião e os primeiros papéis sociais.`,
+        example: `Ensinar a criança a agradecer, respeitar os mais velhos e rezar antes de comer.`,
+        eja: `Muitos valores aprendidos em casa explicam o respeito aos colegas e a determinação para retomar os estudos.`
+      },
+      escola: {
+        title: `Escola`,
+        phase: `Socialização Secundária`,
+        teaches: `Disciplina, convivência com pessoas diferentes, conhecimento formal e regras coletivas.`,
+        example: `Chegar no horário, esperar a vez de falar e dividir tarefas em grupo.`,
+        eja: `Na EJA, adultos reaprendem a rotina de provas e trabalhos convivendo com colegas de várias idades e histórias.`
+      },
+      amigos: {
+        title: `Grupo de amigos`,
+        phase: `Socialização Secundária`,
+        teaches: `Gírias, modas, gostos culturais e o sentimento de pertencer a um grupo.`,
+        example: `Adotar um estilo de roupa, uma música ou uma expressão falada pelos colegas.`,
+        eja: `Na sala da EJA, a troca entre colegas de gerações diferentes cria apoio mútuo e novas amizades.`
+      },
+      trabalho: {
+        title: `Trabalho`,
+        phase: `Socialização Secundária`,
+        teaches: `Responsabilidade, hierarquia, profissão e identidade profissional.`,
+        example: `Usar uniforme, cumprir metas e seguir o jeito próprio da empresa.`,
+        eja: `Grande parte dos estudantes da EJA concilia o turno de trabalho com os estudos noturnos.`
+      },
+      religiao: {
+        title: `Religião`,
+        phase: `Socialização Primária e Secundária`,
+        teaches: `Crenças, rituais, noções de certo e errado e vida em comunidade.`,
+        example: `Participar de cultos, missas, festas e ações da comunidade religiosa.`,
+        eja: `Ajuda a moldar valores morais e redes de solidariedade no bairro.`
+      },
+      midia: {
+        title: `Mídia e redes sociais`,
+        phase: `Socialização Secundária Contemporânea`,
+        teaches: `Modelos de comportamento, padrões de consumo, opiniões e padrões de beleza.`,
+        example: `Copiar um corte de cabelo ou uma tendência vista em um vídeo curto.`,
+        eja: `Exige leitura crítica para distinguir o que é informação confiável de pressões de consumo.`
+      }
+    };
+
+    const CONTROL_SCENES = [
+      {
+        quote: `Às 2h da manhã, sem nenhum carro na rua e sem guarda por perto, um trabalhador para na faixa de pedestres e espera o sinal abrir.`,
+        expected: `autocontrole`,
+        explanation: `É autocontrole! A socialização foi tão eficaz que a norma passou a morar dentro da própria pessoa — não é preciso ninguém vigiando por fora.`
+      },
+      {
+        quote: `Durante o filme no cinema, uma pessoa fala alto ao telefone e os colegas ao redor reclamam, fazem “psiu” e lançam olhares de reprovação.`,
+        expected: `informal`,
+        explanation: `É controle social informal! Exercido no dia a dia por quem está por perto, sem regra escrita ou polícia, usando pressão e olhar de reprovação.`
+      },
+      {
+        quote: `Após três faltas seguidas sem justificativa prevista no contrato, a empresa aplica advertência por escrito e realiza a demissão conforme o regulamento.`,
+        expected: `formal`,
+        explanation: `É controle social formal! Baseia-se em regras escritas e oficiais da instituição, com procedimentos e sanções negativas previstas.`
+      },
+      {
+        quote: `Ao concluir a etapa na EJA, a estudante recebe o certificado na cerimônia, palmas da turma e os parabéns admirados dos vizinhos da rua.`,
+        expected: `positiva`,
+        explanation: `É uma sanção positiva! Além de o diploma vir de uma instituição formal, elogios, palmas e admiração recompensam quem seguiu a norma valorizada.`
+      }
+    ];
+
+    const CELIA_STEPS = [
+      {
+        moment: `06h00 — Cozinha de casa`,
+        status: `Avó (Status familiar)`,
+        role: `Prepara o café da manhã dos netos com cuidado e afeto antes de sair para o trabalho.`
+      },
+      {
+        moment: `07h00 — Trajeto pela cidade`,
+        status: `Passageira (Status cotidiano)`,
+        role: `Pega dois ônibus, paga a passagem, respeita a fila e os assentos preferenciais.`
+      },
+      {
+        moment: `08h00 às 17h00 — Restaurante`,
+        status: `Cozinheira (Status adquirido / profissional)`,
+        role: `Cumpre horários, segue normas de higiene, atende pedidos e trabalha em equipe.`
+      },
+      {
+        moment: `17h30 — Mercado e telefone`,
+        status: `Cliente e Filha (Status múltiplo)`,
+        role: `Escolhe produtos e passa no caixa como cliente; depois liga para cuidar e ouvir a mãe idosa como filha.`
+      },
+      {
+        moment: `19h00 — Escola (EJA)`,
+        status: `Estudante da EJA (Status adquirido)`,
+        role: `Participa da aula, faz anotações, realiza atividades e debate com respeito aos colegas.`
+      },
+      {
+        moment: `Fim de semana — Associação de moradores`,
+        status: `Vizinha e Voluntária`,
+        role: `Ajuda a organizar a festa comunitária do bairro, fortalecendo laços de solidariedade.`
+      }
+    ];
+
+    const PANOPTICON_MODES = {
+      guard: {
+        tag: `Vigilância Assimétrica`,
+        title: `O guarda vê todos, mas ninguém vê o guarda`,
+        body: `Da torre central, o vigilante observa todas as celas iluminadas ao redor. Os presos, porém, não enxergam se há alguém dentro da torre escura.`,
+        takeaway: `Efeito: os presos agem o tempo todo como se estivessem sendo observados.`,
+        emptyTower: false
+      },
+      empty: {
+        tag: `Autocontrole Disciplinar`,
+        title: `Mesmo com a torre vazia, o poder continua funcionando`,
+        body: `Como os detentos nunca têm certeza se a torre está ocupada ou vazia, o medo de estar sendo visto os faz vigiar o próprio comportamento o tempo todo.`,
+        takeaway: `Ligação com a Aula 02: é a forma mais eficiente de controle — o autocontrole internalizado.`,
+        emptyTower: true
+      },
+      today: {
+        tag: `Século XXI`,
+        title: `Do prédio circular para câmeras, ponto e avaliações digitais`,
+        body: `Hoje vemos o princípio do Panóptico nas câmeras de segurança das ruas, ônibus e lojas, no ponto eletrônico do trabalho, nas notas por estrelas de motoristas e entregadores de app e no celular que registra nossa localização.`,
+        takeaway: `Nem sempre sabemos quem olha os dados, mas ajustamos o comportamento como se alguém estivesse olhando.`,
+        emptyTower: false
+      }
+    };
+
+    const QUIZ_QUESTIONS = [
+      {
+        id: `q1`,
+        lesson: `aula1`,
+        lessonLabel: `Aula 1 • Socialização`,
+        stem: `De acordo com Émile Durkheim e o estudo do caso de Victor de Aveyron (encontrado na floresta em 1800), o que podemos concluir sobre a socialização?`,
+        options: [
+          `As regras sociais já nascem gravadas na biologia humana e aparecem sozinhas na adolescência.`,
+          `A sociedade antecede o indivíduo e a convivência nos primeiros anos é decisiva para aprendermos a língua e os hábitos humanos.`,
+          `A socialização acontece apenas dentro da escola formal a partir dos sete anos de idade.`,
+          `Quem cresce isolado da sociedade desenvolve naturalmente todas as normas de convivência.`
+        ],
+        correct: 1,
+        explanation: `Durkheim mostrou que a sociedade já existe antes de nós, esperando o bebê com língua, horários e crenças. O caso de Victor de Aveyron confirma que, sem convivência humana na infância, o desenvolvimento da linguagem e dos hábitos sociais fica gravemente comprometido.`
+      },
+      {
+        id: `q2`,
+        lesson: `aula1`,
+        lessonLabel: `Aula 1 • Socialização`,
+        stem: `Um trabalhador de 42 anos decide voltar a estudar à noite na EJA, reaprendendo a rotina de provas, trabalhos e convivência com colegas de diferentes idades. Na Sociologia, esse processo é chamado de:`,
+        options: [
+          `Socialização primária, pois ocorre obrigatoriamente dentro do ambiente familiar.`,
+          `Suplício disciplinar, por envolver horários rígidos em sala de aula.`,
+          `Socialização secundária, pois acontece após a infância, dura a vida inteira e ensina papéis de novos espaços.`,
+          `Status atribuído, porque não depende de nenhuma escolha ou esforço do estudante.`
+        ],
+        correct: 2,
+        explanation: `Conforme Berger e Luckmann, a socialização primária ocorre na infância (principalmente na família), enquanto a socialização secundária continua por toda a vida adulta ao ingressarmos em novos espaços como escola, trabalho, EJA ou grupos.`
+      },
+      {
+        id: `q3`,
+        lesson: `aula1`,
+        lessonLabel: `Aula 1 • Socialização`,
+        stem: `Sobre os agentes de socialização e a diversidade social, assinale a afirmação correta:`,
+        options: [
+          `Todas as pessoas do país são socializadas exatamente da mesma forma, independente de classe social, gênero, local ou época.`,
+          `A socialização é um processo de mão única em que ninguém consegue questionar o que aprendeu em casa.`,
+          `Família, escola, grupo de amigos, trabalho, religião e mídia ensinam normas e papéis, e o que aprendemos varia conforme classe, gênero, cultura e época.`,
+          `Mídias e redes sociais apenas informam fatos e nunca influenciam padrões de beleza, consumo ou comportamento.`
+        ],
+        correct: 2,
+        explanation: `A socialização varia conforme classe social, gênero, local/cultura e época histórica — e não é mão única, pois podemos interpretar e questionar regras aprendidas. Todos esses agentes participam da formação social.`
+      },
+      {
+        id: `q4`,
+        lesson: `aula2`,
+        lessonLabel: `Aula 2 • Controle Social`,
+        stem: `Quando alguém fura a fila do banco e recebe olhares feios e reclamações dos outros clientes, sem uso de força física nem presença policial, manifesta-se o conceito de Émile Durkheim chamado:`,
+        options: [
+          `Coerção social (exercida por meio do controle informal).`,
+          `Aparelho Repressivo de Estado.`,
+          `Sanção positiva formal.`,
+          `Status atribuído.`
+        ],
+        correct: 0,
+        explanation: `Durkheim chamou de coerção social a pressão que o grupo exerce sobre o indivíduo para seguir regras coletivas. Como parte dos clientes por meio de olhares e reclamações (sem lei escrita ou polícia), trata-se de controle informal.`
+      },
+      {
+        id: `q5`,
+        lesson: `aula2`,
+        lessonLabel: `Aula 2 • Controle Social`,
+        stem: `Qual alternativa apresenta corretamente um exemplo de sanção positiva e um exemplo de sanção negativa?`,
+        options: [
+          `Multa de trânsito (positiva) e suspensão escolar (negativa).`,
+          `Promoção no trabalho ou certificado escolar (positiva) e demissão ou bronca (negativa).`,
+          `Olhar de reprovação (positiva) e elogio dos vizinhos (negativa).`,
+          `Prisão (positiva) e fofoca no bairro (negativa).`
+        ],
+        correct: 1,
+        explanation: `Sanções positivas recompensam quem segue as normas (elogio, certificado, promoção); sanções negativas punem quem descumpre (bronca, suspensão, demissão, multa, prisão).`
+      },
+      {
+        id: `q6`,
+        lesson: `aula2`,
+        lessonLabel: `Aula 2 • Controle Social`,
+        stem: `A proibição da capoeira no Código Penal de 1890, a conquista do voto feminino apenas em 1932 e a devolução do direito ao voto às pessoas analfabetas em 1985 demonstram que:`,
+        options: [
+          `O controle social é sempre neutro, imutável e protege igualmente todos os grupos desde sempre.`,
+          `Leis escritas nunca podem ser injustas porque são aprovadas pelo Estado.`,
+          `O controle social não é neutro; regras refletem interesses de grupos e mudam quando a sociedade se organiza e luta por direitos.`,
+          `Apenas costumes informais mudam ao longo da história; leis nunca se alteram.`
+        ],
+        correct: 2,
+        explanation: `Uma norma pode ser legal e injusta ao mesmo tempo. Esses três marcos brasileiros mostram que o controle social não é neutro e que a luta coletiva transforma proibições passadas em direitos reconhecidos.`
+      },
+      {
+        id: `q7`,
+        lesson: `aula3`,
+        lessonLabel: `Aula 3 • Status e Papéis`,
+        stem: `Segundo o antropólogo Ralph Linton, qual é a diferença entre status atribuído e status adquirido?`,
+        options: [
+          `Status atribuído é apenas para pessoas ricas; status adquirido é para trabalhadores.`,
+          `Status atribuído é conquistado com diploma escolar; status adquirido vem do nascimento.`,
+          `Status atribuído é recebido sem escolha (como idade, ser filho ou local de nascimento); status adquirido é conquistado por escolha, esforço ou oportunidade (como profissão ou estudante da EJA).`,
+          `Não existe diferença: ambos mudam diariamente conforme a roupa que vestimos.`
+        ],
+        correct: 2,
+        explanation: `Linton distingue o status atribuído (herdado/não escolhido, como idade, filiação e origem) do status adquirido (conquistado ao longo da vida, como uma profissão, casamento ou matrícula na EJA).`
+      },
+      {
+        id: `q8`,
+        lesson: `aula3`,
+        lessonLabel: `Aula 3 • Status e Papéis`,
+        stem: `Erving Goffman comparou a vida social a um teatro porque:`,
+        options: [
+          `As pessoas são sempre falsas e fingem sentimentos o tempo inteiro.`,
+          `Em cada ambiente social ajustamos nosso comportamento às expectativas da “plateia” daquele espaço, desempenhando papéis diferentes.`,
+          `Apenas atores profissionais desempenham papéis sociais no trabalho.`,
+          `O papel social nunca é aprendido na socialização.`
+        ],
+        correct: 1,
+        explanation: `Para Goffman, ajustar o modo de agir entre casa, entrevista de emprego e bar com amigos não é falsidade: significa saber o que se espera de nós em cada palco social.`
+      },
+      {
+        id: `q9`,
+        lesson: `aula3`,
+        lessonLabel: `Aula 3 • Status e Papéis`,
+        stem: `No estudo de caso da aula, Dona Célia é avó, cozinheira, passageira, cliente, filha e estudante da EJA. Se o patrão pedir hora extra justamente na noite de sua prova, o que ela enfrenta?`,
+        options: [
+          `Um conflito de papéis, pois as expectativas de trabalhadora e de estudante disputam o mesmo tempo e energia.`,
+          `Um problema puramente biológico sem relação com a vida em sociedade.`,
+          `A perda automática do seu status atribuído de filha.`,
+          `Um exemplo de sanção positiva informal.`
+        ],
+        correct: 0,
+        explanation: `Quando as expectativas de dois papéis sociais (trabalhadora vs. estudante ou mãe/pai) entram em choque no mesmo horário, ocorre um conflito de papéis — um desafio social real vivido por muitos estudantes da EJA.`
+      },
+      {
+        id: `q10`,
+        lesson: `aula4`,
+        lessonLabel: `Aula 4 • Estado e Poder`,
+        stem: `Para Louis Althusser, por que a sociedade capitalista continua funcionando de forma desigual sem depender apenas da polícia a cada esquina?`,
+        options: [
+          `Porque os Aparelhos Repressivos de Estado (ARE) desaparecem totalmente após o século XIX.`,
+          `Porque, além dos ARE (força), o Estado conta com os Aparelhos Ideológicos de Estado (AIE), como escola, família, mídia e igreja, que transmitem ideias fazendo a ordem parecer natural.`,
+          `Porque todos os trabalhadores escolhem livremente a desigualdade sem nenhuma influência cultural.`,
+          `Porque a escola ensina apenas conteúdos matemáticos, sem nenhuma regra de disciplina.`
+        ],
+        correct: 1,
+        explanation: `Althusser mostrou que a reprodução social combina ARE (força: polícia, tribunais, prisões) e AIE (ideias/ideologia: escola, família, mídia, igreja). Para ele, a escola é o principal AIE do capitalismo moderno.`
+      },
+      {
+        id: `q11`,
+        lesson: `aula4`,
+        lessonLabel: `Aula 4 • Estado e Poder`,
+        stem: `Em “Vigiar e punir”, Michel Foucault analisa a passagem dos suplícios públicos para a prisão e mostra que a disciplina busca formar “corpos dóceis” usando três instrumentos principais. Quais são eles?`,
+        options: [
+          `Voto secreto, imposto de renda e contrato sindical.`,
+          `Vigilância, sanção normalizadora e exame.`,
+          `Suplício em praça pública, exército e greve.`,
+          `Status atribuído, status principal e coerção religiosa.`
+        ],
+        correct: 1,
+        explanation: `Foucault identifica três instrumentos da disciplina nas escolas, fábricas, quartéis, hospitais e prisões: vigilância (observar), sanção normalizadora (pequenas correções/recompensas) e exame (provas e classificações).`
+      },
+      {
+        id: `q12`,
+        lesson: `aula4`,
+        lessonLabel: `Aula 4 • Estado e Poder`,
+        stem: `Qual é a principal diferença entre a visão de poder de Louis Althusser e a de Michel Foucault?`,
+        options: [
+          `Para Althusser, o poder está concentrado no Estado a serviço da classe dominante; para Foucault, o poder está espalhado pelas relações e instituições do dia a dia e produz comportamentos.`,
+          `Para Althusser, só existe disciplina nas prisões; para Foucault, só existe poder nas igrejas.`,
+          `Althusser defende o modelo do Panóptico e Foucault criou o termo Aparelho Ideológico.`,
+          `Ambos concordam que o poder só funciona por meio da tortura pública.`
+        ],
+        correct: 0,
+        explanation: `Enquanto Althusser foca o poder concentrado no Estado (ARE e AIE) para reproduzir o capitalismo, Foucault mostra o poder espalhado nas micro-relações cotidianas (professor-aluno, patrão-empregado, médico-paciente) moldando corpos dóceis.`
+      }
+    ];
+
+    let appState = {
+      completedLessons: [],
+      quizAnswers: {},
+      quizFilter: `all`,
+      currentControlScene: 0
+    };
+
+    function selectAgent(agentKey) {
+      const data = AGENTS_DATA[agentKey];
+      if (!data) return;
+
+      const keys = Object.keys(AGENTS_DATA);
+      keys.forEach(function(k) {
+        const btn = document.getElementById(`agent-btn-${k}`);
+        if (btn) {
+          btn.classList.toggle(`is-active`, k === agentKey);
+        }
+      });
+
+      const titleEl = document.getElementById(`agent-title`);
+      const phaseEl = document.getElementById(`agent-phase`);
+      const teachesEl = document.getElementById(`agent-teaches`);
+      const exampleEl = document.getElementById(`agent-example`);
+      const ejaEl = document.getElementById(`agent-eja`);
+
+      if (titleEl) titleEl.textContent = data.title;
+      if (phaseEl) phaseEl.textContent = data.phase;
+      if (teachesEl) teachesEl.textContent = data.teaches;
+      if (exampleEl) exampleEl.textContent = data.example;
+      if (ejaEl) ejaEl.textContent = data.eja;
+    }
+
+    function selectControlScene(index) {
+      if (index < 0 || index >= CONTROL_SCENES.length) return;
+      appState.currentControlScene = index;
+
+      for (let i = 0; i < CONTROL_SCENES.length; i++) {
+        const btn = document.getElementById(`ctrl-scene-${i}`);
+        if (btn) btn.classList.toggle(`is-active`, i === index);
+      }
+
+      const quoteEl = document.getElementById(`ctrl-quote`);
+      const fbEl = document.getElementById(`ctrl-feedback`);
+      if (quoteEl) quoteEl.textContent = CONTROL_SCENES[index].quote;
+      if (fbEl) {
+        fbEl.style.display = `none`;
+        fbEl.textContent = ``;
+      }
+    }
+
+    function checkControlAnswer(choice) {
+      const scene = CONTROL_SCENES[appState.currentControlScene];
+      const fbEl = document.getElementById(`ctrl-feedback`);
+      if (!scene || !fbEl) return;
+
+      const isRight = choice === scene.expected;
+      fbEl.style.display = `block`;
+      fbEl.className = isRight ? `feedback-banner feedback-banner--ok` : `feedback-banner feedback-banner--warn`;
+      fbEl.innerHTML = isRight
+        ? `<strong>Acertou!</strong> ${scene.explanation}`
+        : `<strong>Quase lá — observe o detalhe:</strong> ${scene.explanation}`;
+    }
+
+    function selectCeliaStep(index) {
+      const step = CELIA_STEPS[index];
+      if (!step) return;
+
+      for (let i = 0; i < CELIA_STEPS.length; i++) {
+        const btn = document.getElementById(`celia-btn-${i}`);
+        if (btn) btn.classList.toggle(`is-active`, i === index);
+      }
+
+      const momentEl = document.getElementById(`celia-moment`);
+      const statusEl = document.getElementById(`celia-status`);
+      const roleEl = document.getElementById(`celia-role`);
+
+      if (momentEl) momentEl.textContent = step.moment;
+      if (statusEl) statusEl.textContent = step.status;
+      if (roleEl) roleEl.textContent = step.role;
+    }
+
+    function setPanopticonMode(mode) {
+      const info = PANOPTICON_MODES[mode];
+      if (!info) return;
+
+      [`guard`, `empty`, `today`].forEach(function(m) {
+        const btn = document.getElementById(`pan-btn-${m}`);
+        if (btn) btn.classList.toggle(`is-active`, m === mode);
+      });
+
+      const tagEl = document.getElementById(`pan-tag`);
+      const titleEl = document.getElementById(`pan-title`);
+      const bodyEl = document.getElementById(`pan-body`);
+      const takeawayEl = document.getElementById(`pan-takeaway`);
+
+      if (tagEl) tagEl.textContent = info.tag;
+      if (titleEl) titleEl.textContent = info.title;
+      if (bodyEl) bodyEl.textContent = info.body;
+      if (takeawayEl) takeawayEl.textContent = info.takeaway;
+
+      const tower = document.getElementById(`pan-tower`);
+      const towerText = document.getElementById(`pan-tower-text`);
+      if (tower) {
+        tower.setAttribute(`class`, info.emptyTower ? `svg-tower-empty` : `svg-tower`);
+      }
+      if (towerText) {
+        towerText.textContent = info.emptyTower ? `VAZIA?` : (mode === `today` ? `DADOS` : `TORRE`);
+        towerText.style.fill = info.emptyTower ? `var(--on-surface)` : `var(--on-primary)`;
+      }
+
+      for (let i = 1; i <= 4; i++) {
+        const beam = document.getElementById(`pan-beam-${i}`);
+        if (beam) {
+          beam.setAttribute(`class`, info.emptyTower ? `svg-beam-hidden` : `svg-beam`);
+        }
+      }
+    }
+
+    function toggleLessonDone(lessonId) {
+      const idx = appState.completedLessons.indexOf(lessonId);
+      if (idx === -1) {
+        appState.completedLessons.push(lessonId);
+      } else {
+        appState.completedLessons.splice(idx, 1);
+      }
+      updateProgressUI();
+      saveState();
+    }
+
+    function setQuizFilter(filter) {
+      appState.quizFilter = filter;
+      [`all`, `aula1`, `aula2`, `aula3`, `aula4`].forEach(function(key) {
+        const btn = document.getElementById(`filter-btn-${key}`);
+        if (btn) btn.classList.toggle(`is-active`, key === filter);
+      });
+      renderQuiz();
+      saveState();
+    }
+
+    function selectQuizOption(questionId, optionIndex) {
+      if (Object.prototype.hasOwnProperty.call(appState.quizAnswers, questionId)) {
+        return;
+      }
+      appState.quizAnswers[questionId] = optionIndex;
+      renderQuiz();
+      updateProgressUI();
+      saveState();
+    }
+
+    function resetQuiz(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Clique de novo para zerar`;
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `Reiniciar Simulado`;
+      appState.quizAnswers = {};
+      renderQuiz();
+      updateProgressUI();
+      saveState();
+    }
+
+    function renderQuiz() {
+      const container = document.getElementById(`quiz-container`);
+      if (!container) return;
+
+      const filtered = QUIZ_QUESTIONS.filter(function(q) {
+        return appState.quizFilter === `all` || q.lesson === appState.quizFilter;
+      });
+
+      const letters = [`A`, `B`, `C`, `D`];
+      let html = ``;
+
+      filtered.forEach(function(q, idx) {
+        const answered = Object.prototype.hasOwnProperty.call(appState.quizAnswers, q.id);
+        const chosen = answered ? appState.quizAnswers[q.id] : -1;
+        const isCorrect = answered && chosen === q.correct;
+
+        let optionsHtml = ``;
+        q.options.forEach(function(optText, optIdx) {
+          let cls = `quiz-option-btn`;
+          if (answered) {
+            if (optIdx === q.correct) cls += ` is-correct`;
+            else if (optIdx === chosen) cls += ` is-wrong`;
+          }
+          const disabledAttr = answered ? `disabled` : ``;
+          optionsHtml += `
+            <button type="button" class="${cls}" ${disabledAttr} onclick="selectQuizOption('${q.id}', ${optIdx})">
+              <span class="quiz-option-letter">${letters[optIdx]}</span>
+              <span>${optText}</span>
+            </button>
+          `;
+        });
+
+        let feedbackHtml = ``;
+        if (answered) {
+          feedbackHtml = `
+            <div class="quiz-feedback ${isCorrect ? `is-correct` : `is-wrong`}" aria-live="polite">
+              <strong>${isCorrect ? `Resposta correta!` : `Atenção — alternativa correta: ${letters[q.correct]}.`}</strong>
+              <span> ${q.explanation}</span>
+            </div>
+          `;
+        }
+
+        const statusBadge = answered
+          ? (isCorrect
+              ? `<span class="tag-chip tag-chip--done">Correta</span>`
+              : `<span class="tag-chip" style="background: var(--error-bg); color: var(--error);">Revisar</span>`)
+          : `<span class="index-num">Questão ${String(idx + 1).padStart(2, `0`)}</span>`;
+
+        html += `
+          <article class="quiz-question-card">
+            <div class="quiz-question-meta">
+              <span class="tag-chip tag-chip--petrol">${q.lessonLabel}</span>
+              ${statusBadge}
+            </div>
+            <p class="quiz-question-stem">${q.stem}</p>
+            <div class="quiz-options">${optionsHtml}</div>
+            ${feedbackHtml}
+          </article>
+        `;
+      });
+
+      container.innerHTML = html;
+      updateQuizStats();
+    }
+
+    function updateQuizStats() {
+      let answeredCount = 0;
+      let correctCount = 0;
+      let wrongCount = 0;
+
+      const missedByLesson = { aula1: 0, aula2: 0, aula3: 0, aula4: 0 };
+
+      QUIZ_QUESTIONS.forEach(function(q) {
+        if (Object.prototype.hasOwnProperty.call(appState.quizAnswers, q.id)) {
+          answeredCount++;
+          if (appState.quizAnswers[q.id] === q.correct) {
+            correctCount++;
+          } else {
+            wrongCount++;
+            missedByLesson[q.lesson]++;
+          }
+        }
+      });
+
+      const total = QUIZ_QUESTIONS.length;
+      const statAnswered = document.getElementById(`stat-answered`);
+      const statCorrect = document.getElementById(`stat-correct`);
+      const statWrong = document.getElementById(`stat-wrong`);
+      const statGrade = document.getElementById(`stat-grade`);
+      const diag = document.getElementById(`quiz-diagnosis`);
+
+      if (statAnswered) statAnswered.textContent = `${answeredCount}/${total}`;
+      if (statCorrect) statCorrect.textContent = String(correctCount);
+      if (statWrong) statWrong.textContent = String(wrongCount);
+      if (statGrade) {
+        statGrade.textContent = answeredCount > 0
+          ? ((correctCount / answeredCount) * 10).toFixed(1).replace(`.`, `,`)
+          : `—`;
+      }
+
+      if (diag) {
+        if (answeredCount === 0) {
+          diag.textContent = `Escolha uma alternativa em qualquer questão abaixo para começar o simulado. Seu progresso fica salvo automaticamente.`;
+        } else if (answeredCount < total) {
+          diag.textContent = `Você já respondeu ${answeredCount} de ${total} questões (${correctCount} acerto(s)). Continue até completar o simulado!`;
+        } else {
+          const names = { aula1: `Aula 1 (Socialização)`, aula2: `Aula 2 (Controle Social)`, aula3: `Aula 3 (Status e Papéis)`, aula4: `Aula 4 (Estado e Poder)` };
+          const toReview = Object.keys(missedByLesson).filter(function(k) { return missedByLesson[k] > 0; }).map(function(k) { return names[k]; });
+          diag.textContent = toReview.length === 0
+            ? `Excelente! Você acertou todas as 12 questões e está muito bem preparado para a prova do 2º Bimestre.`
+            : `Simulado concluído com ${correctCount}/${total} acertos. Vale reler especialmente: ${toReview.join(`, `)}.`;
+        }
+      }
+    }
+
+    function updateProgressUI() {
+      const lessonIds = [`aula1`, `aula2`, `aula3`, `aula4`];
+      let doneCount = 0;
+
+      lessonIds.forEach(function(id, idx) {
+        const isDone = appState.completedLessons.indexOf(id) !== -1;
+        if (isDone) doneCount++;
+
+        const badge = document.getElementById(`status-badge-${id}`);
+        if (badge) {
+          badge.textContent = isDone ? `Revisada` : `Pendente`;
+          badge.className = isDone ? `tag-chip tag-chip--done` : `tag-chip`;
+        }
+
+        const btn = document.getElementById(`done-btn-${id}`);
+        if (btn) {
+          btn.setAttribute(`aria-pressed`, isDone ? `true` : `false`);
+          btn.textContent = isDone
+            ? `Aula 0${idx + 1} revisada`
+            : `Marcar Aula 0${idx + 1} como revisada`;
+        }
+      });
+
+      const answeredCount = Object.keys(appState.quizAnswers).length;
+      const totalSteps = 4 + QUIZ_QUESTIONS.length;
+      const currentSteps = doneCount + answeredCount;
+      const pct = Math.round((currentSteps / totalSteps) * 100);
+
+      const kpiLessons = document.getElementById(`kpi-lessons`);
+      const kpiQuiz = document.getElementById(`kpi-quiz`);
+      const fill = document.getElementById(`overall-progress-fill`);
+      const text = document.getElementById(`overall-progress-text`);
+
+      if (kpiLessons) kpiLessons.textContent = `${doneCount}/4`;
+      if (kpiQuiz) kpiQuiz.textContent = `${answeredCount}/${QUIZ_QUESTIONS.length}`;
+      if (fill) fill.style.width = `${pct}%`;
+      if (text) {
+        if (currentSteps === 0) {
+          text.textContent = `Comece pela Aula 01 e marque cada bloco ao terminar a leitura.`;
+        } else if (pct < 100) {
+          text.textContent = `Progresso geral da revisão: ${pct}% concluído.`;
+        } else {
+          text.textContent = `Revisão 100% completa! Você revisou as 4 aulas e concluiu todo o simulado.`;
+        }
+      }
+    }
+
+    async function saveState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        try {
+          await window.notebookAppApi.setAppState({
+            completedLessons: appState.completedLessons,
+            quizAnswers: appState.quizAnswers,
+            quizFilter: appState.quizFilter
+          });
+        } catch (err) {
+          // Silently ignore persistence errors in standalone preview
+        }
+      }
+    }
+
+    async function initApp() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            if (Array.isArray(saved.completedLessons)) {
+              appState.completedLessons = saved.completedLessons;
+            }
+            if (saved.quizAnswers && typeof saved.quizAnswers === `object`) {
+              appState.quizAnswers = saved.quizAnswers;
+            }
+            if (typeof saved.quizFilter === `string`) {
+              appState.quizFilter = saved.quizFilter;
+            }
+          }
+        } catch (err) {
+          // Proceed with fresh state
+        }
+      }
+
+      setQuizFilter(appState.quizFilter);
+      updateProgressUI();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>
